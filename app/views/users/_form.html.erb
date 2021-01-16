@@ -1,0 +1,24 @@
+<%= form_for user do |f| %>
+    <%= f.hidden_field :store_id, value: @store.id %>
+    <%= f.label :username %>
+    <%= f.text_field :username, class: 'form-control' %><br />
+    <%= f.label :email %>
+    <%= f.text_field :email, class: 'form-control' %><br />
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, class: 'form-control' %><br />
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, class: 'form-control' %><br />
+    <%= f.label :company_name %>
+    <%= f.text_field :company_name, class: 'form-control' %><br />
+    
+    <label for="user_account_type">Select an Account Type</label>
+    <select id="user_account_type" name="user[account_type]" class="form-control">
+        <option value="1">Buyer</option>
+        <option value="2">Seller</option>
+    </select>
+    
+    <br>
+    <div class="d-grid gap-2">
+        <%= f.submit 'Sign Up', class: 'btn btn-outline-dark' %>
+    </div>
+<% end %>

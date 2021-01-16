@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :last_name
       t.string :company_name
       t.string :image
-      t.integer :type
+      t.integer :account_type
       t.belongs_to :store
       t.timestamps
     end

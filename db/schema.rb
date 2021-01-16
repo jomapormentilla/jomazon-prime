@@ -105,7 +105,7 @@ ActiveRecord::Schema.define(version: 2021_01_16_014524) do
     t.string "last_name"
     t.string "company_name"
     t.string "image"
-    t.integer "type"
+    t.integer "account_type"
     t.integer "store_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
