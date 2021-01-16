@@ -1,7 +1,9 @@
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
+        <br />
         <h1>Login</h1>
+        <hr />
         <%= form_for @user, url: { controller: 'sessions', action: 'create', method: 'post' } do |f| %>
             <%= f.label :email %>
             <%= f.text_field :email, class: 'form-control' %><br />
@@ -11,6 +13,9 @@
             <div class="d-grid gap-2">
                 <%= f.submit 'Login', class: 'btn btn-outline-primary' %>
             </div>
+
+            <hr />
+            <p class="text-center">Need an Account? <%= link_to 'Sign Up', signup_path %> Here</p>
         <% end %>
     </div>
 </div>

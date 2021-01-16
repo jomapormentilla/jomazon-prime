@@ -8,4 +8,12 @@ module ApplicationHelper
             end
         end
     end
+
+    def login_logout_button
+        if is_logged_in?
+            link_to 'Log Out', logout_path, class: 'nav-link btn btn-sm btn-outline-danger'
+        else
+            link_to 'Sign In', login_path, class: 'nav-link btn btn-sm btn-outline-primary'
+        end
+    end
 end

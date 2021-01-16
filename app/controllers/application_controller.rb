@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     include ApplicationHelper
-    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in
+    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller
     
     private
 
@@ -14,5 +14,10 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_not_logged_in
         redirect_to root_path if !is_logged_in?
+    end
+
+    def redirect_if_not_seller
+        flash[:alert] = "Access Denied."
+        redirect_to user_path(current_user)
     end
 end
