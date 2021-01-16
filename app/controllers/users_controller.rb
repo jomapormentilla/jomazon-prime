@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    include UsersHelper
+
     def new
         @user = User.new
         @store = Store.first
@@ -8,6 +10,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.valid?
             @user.save
+            session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
             render :new
@@ -24,6 +27,7 @@ class UsersController < ApplicationController
         params.require(:user).permit(
             :username,
             :email,
+            :password,
             :first_name,
             :last_name,
             :company_name,
