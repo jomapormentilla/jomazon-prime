@@ -10,13 +10,13 @@ class Product < ApplicationRecord
     has_many :comments
 
     validates :name, presence: true, uniqueness: true
-    validates :description, length: { minimum: 25 }
     validates :price, numericality: { greater_than: 0 }
 
     # accepts_nested_attributes_for :department, reject_if: proc{ |attr| attr['name'].blank? }
 
     def department_attributes=(attributes)
-        self.department = Department.find_or_create_by(name: attributes[:name], store_id: attributes[:store_id])
-        byebug
+        if attributes[:name] != ""
+            self.department = Department.find_or_create_by(name: attributes[:name], store_id: attributes[:store_id])
+        end
     end
 end

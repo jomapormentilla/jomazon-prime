@@ -3,5 +3,7 @@
     <div class="col-md-8">
         <p>Account Type: <%= account_type %></p>
         <p>What would you like to do today, <%= @user.first_name %>?</p>
+        <%= login_logout_button if is_current_user? %>
     </div>
+    
 </div>

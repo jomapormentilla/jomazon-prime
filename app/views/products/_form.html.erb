@@ -1,0 +1,30 @@
+<%= form_for product do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %><br />
+    <%= f.label 'Description (min 25)' %>
+    <%= f.text_area :description, class: 'form-control' %><br />
+    <%= f.label :price %>
+    <%= f.number_field :price, class: 'form-control' %><br />
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity, class: 'form-control' %><br />
+    
+    <%= f.label 'Create a Department' %><br />
+    <%= f.fields_for :department do |d| %>
+        <%= d.label :name %>
+        <%= d.hidden_field :store_id, value: store.id %>
+        <%= d.text_field :name, class: 'form-control' %>
+    <% end %>
+        <br />
+    <% if !departments.empty? %>
+        OR
+        <%= f.label 'Select a Department' %>
+        <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: true }, { class: 'form-control' } %><br />
+    <% end %>
+
+    <%= f.hidden_field :store_id, value: store.id %>
+    <%= f.hidden_field :seller_id, value: user.id %>
+    
+    <div class="d-grid gap-2">
+        <%= f.submit 'Submit', class: 'btn btn-outline-warning' %>
+    </div>
+<% end %>
