@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :carts
+  root "welcome#home"
+
+  resources :categories
   resources :departments
   resources :stores
   resources :ratings
