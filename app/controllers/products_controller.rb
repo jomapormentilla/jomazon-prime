@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
             @product.save
             redirect_to product_path(@product)
         else
-            @department = @product.department
+            @product.build_department
 
             render :new
         end
@@ -50,6 +50,7 @@ class ProductsController < ApplicationController
             :quantity,
             :store_id,
             :seller_id,
+            :department_id,
             department_attributes: [:name, :store_id]
         )
     end

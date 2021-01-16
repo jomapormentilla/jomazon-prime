@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2021_01_16_014524) do
     t.string "name"
     t.string "description"
     t.integer "quantity"
-    t.integer "price"
+    t.decimal "price", precision: 10, scale: 2
     t.string "image"
     t.integer "store_id"
     t.integer "seller_id"

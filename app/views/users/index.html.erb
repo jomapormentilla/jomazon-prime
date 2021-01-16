@@ -1,0 +1,5 @@
+<h1>All Sellers</h1>
+
+<% @sellers.each do |seller| %>
+    <li><%= link_to "#{ seller.first_name } #{ seller.last_name }", user_path(seller) %></li>
+<% end %>

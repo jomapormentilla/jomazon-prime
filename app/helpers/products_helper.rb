@@ -3,7 +3,7 @@ module ProductsHelper
         if @product.quantity == 0 || @product.quantity == nil
             'Out of stock'
         else
-            @product.quantity
+            "#{ @product.quantity } in stock"
         end
     end
 end

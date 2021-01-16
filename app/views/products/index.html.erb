@@ -1,17 +1,5 @@
 <div class="row">
     <h1>Display All Products</h1>
 
-    <% @products.each do |product| %>
-        <div class="col-md-3">
-            <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"><%= product.name %></h5>
-                    <p>Sold By: <%= link_to product.seller.username, user_path(product.seller) %></p>
-                    <p class="card-text"><%= product.description %></p>
-                    <a href="#" class="btn btn-primary">$<%= product.price %></a>
-                </div>
-            </div>
-        </div>
-    <% end %>
+    <%= render partial: 'display_products', locals: { products: @products } %>
 </div>

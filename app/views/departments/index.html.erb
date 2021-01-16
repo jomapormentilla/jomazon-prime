@@ -1,10 +1,11 @@
+<br />
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <h1>All Departments</h1>
         
         <% @departments.each do |department| %>
-            <li><%= department.name %></li>
+            <li><%= department.name.titleize %></li>
         <% end %>
     </div>
 </div>

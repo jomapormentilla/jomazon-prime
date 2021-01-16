@@ -12,6 +12,14 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    validates :username, presence: true, uniqueness: true
     validates :email, presence: true, uniqueness: true
+
+    def slug
+        string = "#{ self.first_name } #{ self.last_name }"
+        string.downcase.gsub(/\W/," ").gsub(/\s+/," ").gsub(" ","-")
+    end
+
+    def self.find_by_slug( slug )
+        self.all.detect{ |obj| obj.slug == slug }
+    end
 end

@@ -1,0 +1,16 @@
+<% products.each do |product| %>
+    <div class="col-md-3">
+        <div class="card" style="width: 100%;">
+            <img src="..." class="card-img-top" alt="..." style="width: 100%; height: 100px;">
+            <div class="card-body">
+                <h4 class="card-title"><%= link_to product.name, product_path(product) %></h4>
+                <p>Sold By: <%= link_to product.seller.company_name, user_path(product.seller) %></p>
+                <p class="card-text"><%= product.description %></p>
+
+                <div class="d-grid gap-2">
+                    <%= link_to "$#{ product.price }", product_path(product), class: 'btn btn-info text-white' %>
+                </div>
+            </div>
+        </div><br />
+    </div>
+<% end %>

@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
     include UsersHelper
 
+    def index
+        @sellers = User.all.where("account_type = ?", 2)
+    end
+
     def new
         @user = User.new
         @store = Store.first

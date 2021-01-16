@@ -4,22 +4,22 @@
     <%= f.label 'Description (min 25)' %>
     <%= f.text_area :description, class: 'form-control' %><br />
     <%= f.label :price %>
-    <%= f.number_field :price, class: 'form-control' %><br />
+    <%= f.number_field :price, step: 0.01, class: 'form-control' %><br />
     <%= f.label :quantity %>
     <%= f.number_field :quantity, class: 'form-control' %><br />
     
+    <% if !departments.empty? %>
+        <%= f.label 'Select a Department' %>
+        <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: true }, { class: 'form-control' } %><br />
+        OR
+    <% end %>
+
     <%= f.label 'Create a Department' %><br />
     <%= f.fields_for :department do |d| %>
-        <%= d.label :name %>
         <%= d.hidden_field :store_id, value: store.id %>
         <%= d.text_field :name, class: 'form-control' %>
     <% end %>
-        <br />
-    <% if !departments.empty? %>
-        OR
-        <%= f.label 'Select a Department' %>
-        <%= f.collection_select :department_id, Department.all, :id, :name, { prompt: true }, { class: 'form-control' } %><br />
-    <% end %>
+    <br />
 
     <%= f.hidden_field :store_id, value: store.id %>
     <%= f.hidden_field :seller_id, value: user.id %>

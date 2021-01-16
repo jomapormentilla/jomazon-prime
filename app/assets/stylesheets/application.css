@@ -14,10 +14,39 @@
  *= require_self
  */
 
-body, html {
-    font-size: 15px;
+html {
+    background-color: #212428;
+}
+
+body {
+    font-size: 13px;
+    background-color: #eaecec;
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Bebas Neue', cursive;
 }
+
+.card, .btn {
+    border-radius: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.nav-users {
+    padding: 15px 35px;
+    background-color: #aaa;
+    text-align: right;
+}
+
+.nav-users a {
+    color: #fff;
+    padding: 10px;
+}
+
+.nav-users a:hover {
+    border: solid 1px #eee;
+}
+

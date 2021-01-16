@@ -1,9 +1,9 @@
+<br />
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
+        <p>Name: <%= @user.first_name %></p>
         <p>Account Type: <%= account_type %></p>
-        <p>What would you like to do today, <%= @user.first_name %>?</p>
-        <%= login_logout_button if is_current_user? %>
+        <%= link_to 'Logout', logout_path if @user.id == current_user.id %>
     </div>
-    
 </div>
