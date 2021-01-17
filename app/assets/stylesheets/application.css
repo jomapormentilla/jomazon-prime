@@ -82,3 +82,13 @@ a {
 .product-price {
     font-size: 30px;
 }
+
+.related-products-container {
+    width: 2000px;
+    overflow-x: scroll;
+    border: solid 1px #000;
+}
+
+.related-product-img {
+    height: 150px;
+}

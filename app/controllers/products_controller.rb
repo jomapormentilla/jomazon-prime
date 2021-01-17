@@ -39,6 +39,7 @@ class ProductsController < ApplicationController
     end
 
     def show
+        @related_products = Product.where("department_id = ?", @product.department_id).limit(10)
     end
 
     def edit

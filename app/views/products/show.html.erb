@@ -2,7 +2,22 @@
 <div class="row">
     <div class="col-md-9">
         <%= render partial: 'display_single_product', locals: { product: @product } %>
+        <h3>Comments</h3>
+        <%=  %>
+
+        <h3>Related Products (<%= @related_products.size %>)</h3>
+        <div class="row">
+            <% @related_products.each do |product| %>
+                <div class="card p-0" style="width: 8rem;">
+                    <%= link_to image_tag(image_url(product.image), class: 'card-img-top related-product-img'), product_path(product) %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.name %></h5>
+                    </div>
+                </div>
+            <% end %>
+        </div>
     </div>
+
     <div class="col-md-3">
         <div class="card text-dark bg-light mb-3" style="width: 100%;">
             <div class="card-header text-center">Your Cart</div>
@@ -13,3 +28,5 @@
         </div>
     </div>
 </div>
+
+<br />
