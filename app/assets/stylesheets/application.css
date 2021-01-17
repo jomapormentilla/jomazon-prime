@@ -40,6 +40,14 @@ a {
     text-decoration: none;
 }
 
+.nav-logo {
+    width: 150px;
+}
+
+.search-logo {
+    width: 100%;
+}
+
 .nav-users {
     padding: 15px 35px;
     background-color: #3b5ab1;
