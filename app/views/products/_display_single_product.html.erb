@@ -6,9 +6,13 @@
         <div class="col-md-8">
         <div class="card-body">
             <h1 class="card-title"><%= product.name %></h1>
-            <p><%= link_to product.seller.company_name, user_path(product.seller) %></p>
-            <p class="card-text"><%= product.description %></p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h6><%= link_to product.seller.company_name, user_path(product.seller) %></h6>
+            <h4>$<%= product.price %></h4>
+            <p class="card-text" style="font-size: 20px;"><%= product.description %></p>
+            <p class="card-text"><small class="text-muted">Last Updated: <%= parse_timestamp(product.updated_at) %></small></p>
+            <div class="d-grid gap-2">
+                <%= link_to 'Add Item to Cart', product_path(product), class: 'btn btn-outline-warning' %>
+            </div>
         </div>
         </div>
     </div>

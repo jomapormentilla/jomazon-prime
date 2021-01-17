@@ -2,10 +2,41 @@
 <div class="row">
     <div class="col-md-9">
         <%= render partial: 'display_single_product', locals: { product: @product } %>
-        <h3>Comments</h3>
-        <%=  %>
 
-        <h3>Related Products (<%= @related_products.size %>)</h3>
+        <hr />
+        <h3>Reviews <small class="text-muted">(<%= @reviews.size %>)</small></h3>
+        <%= form_for @review do |f| %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.text_area :content, placeholder: 'Add your review here...', class: 'form-control' %>
+            <br />
+            <%= f.submit 'Post Your Review', class: 'btn btn-custom' %>
+        <% end %>
+
+        <br />
+        <% if @reviews.empty? %>
+            <div class="alert alert-secondary">This product does not have any reviews.</div>
+        <% else %>
+            <% @reviews.each do |review| %>
+                <div class="card mb-3" style="width: 100%;">
+                    <div class="row g-0">
+                        <div class="col-md-2">
+                            <img src="<%= review.user.image %>" alt="..." style="width: 100%;">
+                        </div>
+                        <div class="col-md-10">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= review.user.first_name %></h5>
+                                <p><small class="text-muted"><%= parse_timestamp(review.updated_at) %></small></p>
+                                <p class="card-text"><%= review.content %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+
+        <hr />
+        <h3>Related Products</h3>
         <div class="row">
             <% @related_products.each do |product| %>
                 <div class="card p-0" style="width: 8rem;">

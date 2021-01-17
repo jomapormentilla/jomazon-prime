@@ -8,6 +8,7 @@ class Product < ApplicationRecord
 
     has_many :ratings
     has_many :comments
+    has_many :reviews
 
     # validates :name, presence: true, uniqueness: true
     validates :description, presence: true

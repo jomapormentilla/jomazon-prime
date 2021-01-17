@@ -40,6 +40,8 @@ class ProductsController < ApplicationController
 
     def show
         @related_products = Product.where("department_id = ?", @product.department_id).limit(10)
+        @review = Review.new
+        @reviews = @product.reviews.order(:id)
     end
 
     def edit

@@ -16,4 +16,8 @@ module ApplicationHelper
             link_to 'Sign In', login_path, class: 'btn btn-outline-light btn-sm'
         end
     end
+
+    def parse_timestamp( timestamp )
+        timestamp.strftime("%B %d, %Y at %l:%M%P")
+    end
 end

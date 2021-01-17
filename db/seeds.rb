@@ -1,10 +1,11 @@
 def start
-    create_store
-    create_departments
-    create_sellers
-    create_buyers
-    create_products
-    get_images
+    # create_store
+    # create_departments
+    # create_sellers
+    # create_buyers
+    # create_products
+    # get_images
+    get_reviews
 end
 
 def create_store
@@ -97,6 +98,27 @@ def get_images
     Product.all.where(image: nil).each.with_index do |product, index|
         product.image = html.css(".gallery-asset__thumb")[index].attr("src")
         product.save
+    end
+    
+    # Scrape pictures for users
+    url = "https://www.gettyimages.co.uk/photos/interview-person?family=creative&license=rf&numberofpeople=one&phrase=interview%20person&sort=mostpopular#license"  
+    html = Nokogiri::HTML(open(url))
+    
+    User.all.each.with_index do |user, index|
+        user.image = html.css(".gallery-asset__thumb")[index].attr("src")
+        user.save
+    end
+end
+
+def get_reviews
+    100.times do
+        data = {
+            content: Faker::Lorem.sentence(word_count: 25),
+            user_id: User.where(account_type: 1).sample.id,
+            product_id: Product.all.sample.id
+        }
+
+        Review.create(data)
     end
 end
 
