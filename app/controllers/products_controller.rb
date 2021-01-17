@@ -8,10 +8,12 @@ class ProductsController < ApplicationController
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
             @sellers = User.all.where("account_type = ?", 2).order(:first_name)
-            @products = @user.products.includes(:seller)
+            @products = @user.products.includes(:seller).order(:name)
+
         elsif params[:department_id]
             @department = Department.find_by_id(params[:department_id])
-            @products = @department.products.includes(:seller)
+            @products = @department.products.includes(:seller).order(:name)
+
         else
             @products = Product.all.includes(:seller)
         end
