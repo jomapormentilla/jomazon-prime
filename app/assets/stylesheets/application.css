@@ -24,7 +24,7 @@ body {
     min-height: 100vh;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, .product-price {
     font-family: 'Bebas Neue', cursive;
 }
 
@@ -57,4 +57,8 @@ a {
 
 .active a {
     color: #fff;
+}
+
+.product-price {
+    font-size: 30px;
 }

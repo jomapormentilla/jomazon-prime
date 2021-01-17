@@ -56,7 +56,8 @@ def create_buyers
             company_name: company,
             password: 'plokijuh',
             store_id: Store.first.id,
-            account_type: 1
+            account_type: 1,
+            balance: 5000.0
         }
 
         User.create(data)

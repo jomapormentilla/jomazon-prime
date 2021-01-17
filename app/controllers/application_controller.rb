@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     end
 
     def redirect_if_not_logged_in
-        redirect_to root_path, :notice => "You must sign in to continue." if !is_logged_in?
+        redirect_to login_path, :notice => "You must sign in to continue." if !is_logged_in?
     end
 
     def redirect_if_not_seller

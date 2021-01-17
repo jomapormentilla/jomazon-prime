@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.valid?
+            @user.balance = 5000.0 if @user.account_type == 1
             @user.save
             session[:user_id] = @user.id
             redirect_to user_path(@user)
