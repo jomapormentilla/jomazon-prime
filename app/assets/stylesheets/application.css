@@ -21,6 +21,7 @@ html {
 body {
     font-size: 13px;
     background-color: #eaecec;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,13 +32,17 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0px;
 }
 
+.card-title a {
+    color: #222;
+}
+
 a {
     text-decoration: none;
 }
 
 .nav-users {
     padding: 15px 35px;
-    background-color: #aaa;
+    background-color: #3b5ab1;
     text-align: right;
 }
 
@@ -50,3 +55,6 @@ a {
     border: solid 1px #eee;
 }
 
+.active a {
+    color: #fff;
+}

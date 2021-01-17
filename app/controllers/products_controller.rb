@@ -1,11 +1,20 @@
 class ProductsController < ApplicationController
     before_action :current_user, only: [:index, :new, :create, :show, :edit]
-    before_action :redirect_if_not_seller, only: [:new, :create]
-    before_action :assign_store_and_departments, only: [:new, :create, :edit]
+    before_action :redirect_if_not_seller, only: [:new, :create, :edit]
+    before_action :assign_store_and_departments, only: [:index, :new, :create, :edit]
     before_action :find_product, only: [:show, :edit, :update]
 
     def index
-        @products = Product.all
+        if params[:user_id]
+            @user = User.find_by_id(params[:user_id])
+            @sellers = User.all.where("account_type = ?", 2).order(:first_name)
+            @products = @user.products.includes(:seller)
+        elsif params[:department_id]
+            @department = Department.find_by_id(params[:department_id])
+            @products = @department.products.includes(:seller)
+        else
+            @products = Product.all.includes(:seller)
+        end
     end
 
     def new

@@ -1,12 +1,20 @@
 <div class="row">
     <%= render partial: 'layouts/search_home' %>
-    <div class="col-md-1"></div>
+    <div class="col-md-12"><br /></div>
+
+    <div class="d-sm-none d-md-block col-md-2 text-end" style="border-right: solid 1px #aaa">
+        <%= render partial: 'departments/list_departments', locals: { departments: @departments } %>
+
+        <hr />
+
+        <%= render partial: 'users/list_sellers', locals: { sellers: @sellers } %>
+    </div>
+
     <div class="col-md-10">
-        <br />
         <div class="row">
             <% @departments.each do |department| %>
                 <% if !department.products.empty? %>
-                    <h2><%= department.name.capitalize %></h2><hr />
+                    <h2><%= link_to department.name.capitalize, department_products_path(department) %></h2><hr />
                     <%= render partial: 'products/display_products', locals: { products: department.products } %>
                 <% end %>
             <% end %>

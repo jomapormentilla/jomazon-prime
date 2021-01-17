@@ -111,6 +111,10 @@ GEM
     mini_portile2 (2.5.0)
     minitest (5.14.3)
     msgpack (1.3.3)
+    net-http (0.1.1)
+      net-protocol
+      uri
+    net-protocol (0.1.0)
     nio4r (2.5.4)
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
@@ -188,6 +192,7 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uri (0.10.1)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -220,6 +225,8 @@ DEPENDENCIES
   faker!
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  net-http
+  nokogiri
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.1)

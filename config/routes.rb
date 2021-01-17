@@ -9,13 +9,18 @@ Rails.application.routes.draw do
 
   get '/logout' => 'sessions#destroy'
 
+  get '/sellers' => 'users#sellers'
+
   resources :categories
-  resources :departments
   resources :stores
   resources :ratings
   resources :reviews
   resources :comments
   resources :products
+  
+  resources :departments do
+    resources :products, only: [:index]
+  end
   
   resources :users do
     resources :products, only: [:index]

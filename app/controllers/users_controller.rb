@@ -1,8 +1,15 @@
 class UsersController < ApplicationController
     include UsersHelper
+    before_action :redirect_if_not_seller, only: [:new, :create, :edit]
+    before_action :redirect_if_already_logged_in, only: [:new]
+    before_action :redirect_if_not_logged_in, only: [:show]
 
     def index
-        @sellers = User.all.where("account_type = ?", 2)
+        @sellers = User.all.order(:first_name)
+    end
+
+    def sellers
+        @sellers = User.all.where("account_type = ?", 2).order(:first_name)
     end
 
     def new

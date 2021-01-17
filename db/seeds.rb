@@ -1,8 +1,10 @@
 def start
-    # create_store
-    # create_departments
-    # create_sellers
+    create_store
+    create_departments
+    create_sellers
     create_products
+    get_images
+    get_images_2
 end
 
 def create_store
@@ -40,7 +42,7 @@ def create_sellers
 end
 
 def create_products
-    20.times do
+    50.times do
         data = {
             name: Faker::Commerce.product_name,
             description: Faker::Lorem.sentence(word_count: 25),
@@ -52,6 +54,28 @@ def create_products
         }
 
         Product.create(data)
+    end
+end
+
+def get_images
+    url = "https://www.gettyimages.com/photos/clothing?compositions=stilllife&family=creative&license=rf&phrase=clothing&sort=mostpopular#license"
+        
+    html = Nokogiri::HTML(open(url))
+
+    Product.all.each.with_index do |product, index|
+        product.image = html.css(".gallery-asset__thumb")[index].attr("src")
+        product.save
+    end
+end
+
+def get_images_2
+    url = "https://www.gettyimages.com/photos/electronics?compositions=stilllife&family=creative&license=rf&phrase=electronics&sort=mostpopular#license"
+        
+    html = Nokogiri::HTML(open(url))
+
+    Product.all.where(image: nil).each.with_index do |product, index|
+        product.image = html.css(".gallery-asset__thumb")[index].attr("src")
+        product.save
     end
 end
 

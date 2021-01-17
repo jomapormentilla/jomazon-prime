@@ -17,6 +17,10 @@
     <div class="container-fluid">
       <%= render partial: 'layouts/navigation' %>
       <%= navigation_by_account_type %>
+      <% flash.each do |type, msg| %>
+        <br />
+        <div class="alert alert-info text-center"><%= msg %></div>
+      <% end %>
       <%= yield %>
       <br />
       <%= render partial: 'layouts/footer' %>
