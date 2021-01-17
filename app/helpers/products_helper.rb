@@ -30,10 +30,12 @@ module ProductsHelper
             render partial: 'departments/list_departments', locals: { departments: @departments }
         elsif !@user.nil?
             render partial: 'users/list_sellers', locals: { sellers: @sellers }
+        else
+            render partial: 'departments/list_departments', locals: { departments: @departments }
         end
     end
 
-    def product_action_button
+    def product_action_button( product )
         if is_logged_in?
             if current_user.account_type == 1
                 link_to 'Add to Cart', product_path(product), class: 'btn btn-warning text-white'

@@ -1,12 +1,17 @@
 <%= form_for product do |f| %>
     <%= f.label :name %>
-    <%= f.text_field :name, placeholder: 'What do you call your product?', class: 'form-control' %><br />
+    <%= f.text_field :name, placeholder: 'Name your product...', class: 'form-control' %><br />
     <%= f.label 'Description (min 25)' %>
     <%= f.text_area :description, placeholder: 'Describe your product...', class: 'form-control' %><br />
+    
     <%= f.label :price %>
-    <%= f.number_field :price, step: 0.01, placeholder: '29.95', class: 'form-control' %><br />
+    <div class="input-group">
+        <div class="input-group-text">$</div>
+        <%= f.number_field :price, step: 0.01, placeholder: '0.00', class: 'form-control' %>
+    </div><br />
+
     <%= f.label :quantity %>
-    <%= f.number_field :quantity, placeholder: '20', class: 'form-control' %><br />
+    <%= f.number_field :quantity, placeholder: '0', class: 'form-control' %><br />
     
     <% if !departments.empty? %>
         <%= f.label 'Select a Department' %>
@@ -25,6 +30,6 @@
     <%= f.hidden_field :seller_id, value: user.id %>
     
     <div class="d-grid gap-2">
-        <%= f.submit 'Submit', class: 'btn btn-info' %>
+        <%= f.submit 'Submit', class: 'btn btn-custom' %>
     </div>
 <% end %>

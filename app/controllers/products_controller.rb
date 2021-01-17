@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
             @products = @department.products.includes(:seller).order(:name)
 
         else
-            @products = Product.all.includes(:seller)
+            @products = Product.all.includes(:seller).order(:name)
         end
     end
 

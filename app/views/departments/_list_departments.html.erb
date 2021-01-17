@@ -1,5 +1,6 @@
 <h3>Departments</h3>
 <ul class="list-group">
+    <li class="list-group-item"><%= link_to 'All Products', products_path %></li>
     <% departments.each do |department| %>
         <li class="list-group-item <%= active_product_item(department) %>"><%= link_to department.name, department_products_path(department) %></li>
     <% end %>

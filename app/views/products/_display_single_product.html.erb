@@ -1,0 +1,15 @@
+<div class="card mb-3" style="width: 100%;">
+    <div class="row g-0">
+        <div class="col-md-4">
+        <img src="<%= product.image %>" alt="..." style="width: 100%;" />
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+            <h1 class="card-title"><%= product.name %></h1>
+            <p><%= link_to product.seller.company_name, user_path(product.seller) %></p>
+            <p class="card-text"><%= product.description %></p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+        </div>
+    </div>
+</div>

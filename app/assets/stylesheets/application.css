@@ -48,9 +48,21 @@ a {
     width: 100%;
 }
 
+.btn-custom {
+    background-color: #30497f;
+    color: #fff;
+    border: none;
+    transition-duration: 0.25s;
+}
+
+.btn-custom:hover {
+    background-color: #496fc0;
+    color: #fff;
+}
+
 .nav-users {
     padding: 15px 35px;
-    background-color: #3b5ab1;
+    background-color: #30497f;
     text-align: right;
 }
 
@@ -59,7 +71,7 @@ a {
     padding: 10px;
 }
 
-.nav-users a:hover {
+.nav-users a:hover, .nav-logo:hover {
     border: solid 1px #eee;
 }
 
