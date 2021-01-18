@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get '/sellers' => 'users#sellers'
 
+  post '/addtocart/:id' => 'products#addtocart', as: "addtocart"
+
   resources :products
   resources :categories
   resources :ratings, only: [:create]

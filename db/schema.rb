@@ -21,20 +21,20 @@ ActiveRecord::Schema.define(version: 2021_01_18_220958) do
     t.index ["product_id"], name: "index_buyer_products_on_product_id"
   end
 
-  create_table "cart_products_tables", force: :cascade do |t|
+  create_table "cart_products", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "product_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_id"], name: "index_cart_products_tables_on_cart_id"
-    t.index ["product_id"], name: "index_cart_products_tables_on_product_id"
+    t.index ["cart_id"], name: "index_cart_products_on_cart_id"
+    t.index ["product_id"], name: "index_cart_products_on_product_id"
   end
 
-  create_table "carts_tables", force: :cascade do |t|
+  create_table "carts", force: :cascade do |t|
     t.integer "buyer_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["buyer_id"], name: "index_carts_tables_on_buyer_id"
+    t.index ["buyer_id"], name: "index_carts_on_buyer_id"
   end
 
   create_table "categories", force: :cascade do |t|

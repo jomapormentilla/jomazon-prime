@@ -61,7 +61,7 @@ module ProductsHelper
         if product.seller.id == current_user.id
             link_to 'Edit Item', edit_product_path(product), class: 'btn btn-outline-warning'
         else
-            link_to 'Add Item to Cart', product_path(product), class: 'btn btn-outline-warning' if current_user.account_type == 1
+            button_to 'Add Item to Cart', addtocart_path(product), class: 'btn btn-outline-warning' if current_user.account_type == 1
         end
     end
 

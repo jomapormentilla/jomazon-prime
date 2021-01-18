@@ -10,7 +10,8 @@ class Product < ApplicationRecord
     has_many :comments
     has_many :reviews
 
-    has_many :carts
+    has_many :cart_products
+    has_many :carts, through: :cart_products
 
     # validates :name, presence: true, uniqueness: true
     validates :description, presence: true
