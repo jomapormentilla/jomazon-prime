@@ -31,6 +31,9 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        if !is_current_user?( @user )
+            redirec_if_buyer( @user )
+        end
     end
 
     private
@@ -46,5 +49,9 @@ class UsersController < ApplicationController
             :account_type,
             :store_id
         )
+    end
+
+    def redirec_if_buyer( user )
+        redirect_to sellers_path if user.account_type == 1
     end
 end

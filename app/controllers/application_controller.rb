@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     include ApplicationHelper
-    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in
+    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in, :is_a_seller?
     
     private
 
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
         redirect_to user_path(current_user), :notice => "You are already signed in." if is_logged_in?
     end
 
-    def is_current_user?
-        current_user.id == session[:user_id]
+    def is_current_user?( user )
+        user.id == session[:user_id]
     end
 end

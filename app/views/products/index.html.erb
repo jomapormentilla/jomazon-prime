@@ -4,6 +4,7 @@
         <%= list_users_or_departments %>
     </div>
     <div class="col-md-10">
+        <%= add_new_product_button %>
         <h1><%= products_index_title %></h1>
 
         <%= render partial: 'display_products', locals: { products: @products } %>

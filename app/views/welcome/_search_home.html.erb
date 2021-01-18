@@ -2,6 +2,11 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
         <%= image_tag image_url('jomazon-logo-v2.png'), class: 'search-logo' %>
-        <input type="search" class="form-control" placeholder="Search Jomazon...">
+        <%= form_tag search_path do %>
+            <div class="input-group mb-3">
+                <%= text_field_tag 'search', nil, placeholder: "Search Jomazon...", class: 'form-control' %>
+                <%= submit_tag 'Search', class: 'btn btn-secondary' %>
+            </div>
+        <% end %>
     </div>
 </div>

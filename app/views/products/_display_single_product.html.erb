@@ -1,7 +1,7 @@
 <div class="card mb-3" style="width: 100%;">
     <div class="row g-0">
         <div class="col-md-4">
-        <img src="<%= product.image %>" alt="..." style="width: 100%;" />
+        <%= product_image( product ) %>
         </div>
         <div class="col-md-8">
         <div class="card-body">
@@ -11,7 +11,7 @@
             <p class="card-text" style="font-size: 20px;"><%= product.description %></p>
             <p class="card-text"><small class="text-muted">Last Updated: <%= parse_timestamp(product.updated_at) %></small></p>
             <div class="d-grid gap-2">
-                <%= link_to 'Add Item to Cart', product_path(product), class: 'btn btn-outline-warning' %>
+                <%= product_edit_or_add_to_cart( product ) %>
             </div>
         </div>
         </div>

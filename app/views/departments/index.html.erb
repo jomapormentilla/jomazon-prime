@@ -5,7 +5,10 @@
         <h1>All Departments</h1>
         
         <% @departments.each do |department| %>
-            <li><%= department.name.titleize %></li>
+            <% if !department.products.empty? %>
+                <h2><%= link_to department.name.capitalize, department_products_path(department) %></h2><hr />
+                <%= render partial: 'products/display_products', locals: { products: department.products } %>
+            <% end %>
         <% end %>
     </div>
 </div>

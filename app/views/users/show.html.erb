@@ -2,9 +2,12 @@
 <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-        <p>Name: <%= @user.first_name %></p>
-        <p>Account Type: <%= account_type %></p>
-        <p><%= link_to 'Products by this Seller', user_products_path(@user) %></p>
-        <%= link_to 'Logout', logout_path if @user.id == current_user.id %>
+        <%= link_to 'Logout', logout_path, class: 'btn btn-outline-danger btn-sm float-end' if @user.id == current_user.id %>
+        <h1><%= @user.company_name %></h1>
+        <p>Owner: <%= @user.first_name %> <%= @user.last_name %></p>
+
+        <hr />
+        <h3>Products by this seller:</h3>
+        <%= render partial: 'products/display_products', locals: { products: @user.products } %>
     </div>
 </div>

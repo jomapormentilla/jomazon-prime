@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root "welcome#home"
   
+  get '/search' => 'welcome#search'
+  post '/search' => 'welcome#search'
+  
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
 
@@ -23,7 +26,7 @@ Rails.application.routes.draw do
   end
   
   resources :users do
-    resources :products, only: [:index]
+    resources :products, only: [:index, :new]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

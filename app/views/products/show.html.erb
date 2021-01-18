@@ -40,7 +40,7 @@
         <div class="row">
             <% @related_products.each do |product| %>
                 <div class="card p-0" style="width: 8rem;">
-                    <%= link_to image_tag(image_url(product.image), class: 'card-img-top related-product-img'), product_path(product) %>
+                    <%= product_image( product ) %>
                     <div class="card-body">
                         <h5 class="card-title"><%= product.name %></h5>
                     </div>
@@ -50,13 +50,7 @@
     </div>
 
     <div class="col-md-3">
-        <div class="card text-dark bg-light mb-3" style="width: 100%;">
-            <div class="card-header text-center">Your Cart</div>
-            <div class="card-body">
-                <h5 class="card-title">Your Cart is Empty</h5>
-                <p class="card-text">No data to display</p>
-            </div>
-        </div>
+        <%= display_cart %>
     </div>
 </div>
 
