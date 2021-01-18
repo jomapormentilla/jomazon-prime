@@ -1,13 +1,35 @@
 <br />
 <div class="row">
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        <%= display_account_settings %>
+        
+        <div style="text-align: right;">
+            <%= render partial: 'list_sellers', locals: { sellers: @sellers } %>
+        </div>
+    </div>
     <div class="col-md-8">
-        <%= link_to 'Logout', logout_path, class: 'btn btn-outline-danger btn-sm float-end' if @user.id == current_user.id %>
         <h1><%= @user.company_name %></h1>
         <p>Owner: <%= @user.first_name %> <%= @user.last_name %></p>
 
         <hr />
-        <h3>Products by this seller:</h3>
-        <%= render partial: 'products/display_products', locals: { products: @user.products } %>
+        
+        <br />
+        <div class="row">
+            <h3>Products</h3>
+            <div class="d-grid gap-2"><%= add_new_product_button %></div>
+            <% @user.products.each do |product| %>
+                <div class="card p-0" style="width: 8rem;">
+                    <%= product_image( product ) %>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= product.name %></h5>
+                    </div>
+                </div>
+            <% end %>
+        </div>
+
+        <br />
+        <h3>Comments from Other Users</h3>
     </div>
 </div>
+<br />

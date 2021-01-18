@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-    include UsersHelper
-    before_action :redirect_if_not_seller, only: [:new, :create, :edit]
+    before_action :redirect_if_not_seller, only: [:new, :create]
     before_action :redirect_if_already_logged_in, only: [:new]
     before_action :redirect_if_not_logged_in, only: [:show]
 
@@ -13,6 +12,10 @@ class UsersController < ApplicationController
     end
 
     def new
+        if params[:test]
+            byebug
+        end
+
         @user = User.new
         @store = Store.first
     end
@@ -29,8 +32,24 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+        @user = User.find(params[:id])
+        @store = Store.first
+    end
+
+    def update
+        @user = User.find(params[:id])
+
+        if @user.update(user_params)
+            redirect_to user_path( @user ), notice: "Profile Updated"
+        else
+            render :edit
+        end
+    end
+
     def show
         @user = User.find(params[:id])
+        @sellers = User.where(account_type: 2).order(:company_name)
         if !is_current_user?( @user )
             redirec_if_buyer( @user )
         end

@@ -15,7 +15,7 @@
 
         <br />
         <% if @reviews.empty? %>
-            <div class="alert alert-secondary">This product does not have any reviews.</div>
+            <div class="alert alert-info text-center">This product does not have any reviews.</div>
         <% else %>
             <% @reviews.each do |review| %>
                 <div class="card mb-3" style="width: 100%;">

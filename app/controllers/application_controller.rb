@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-    include ApplicationHelper
     helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in, :is_a_seller?
     
     private
@@ -18,7 +17,7 @@ class ApplicationController < ActionController::Base
 
     def redirect_if_not_seller
         if current_user.account_type != 2
-            flash[:message] = "Access Denied."
+            flash[:message] = "You must have a Seller account to view this page."
             redirect_to user_path(current_user)
         end
     end

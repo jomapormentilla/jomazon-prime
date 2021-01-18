@@ -1,14 +1,13 @@
 class ProductsController < ApplicationController
-    before_action :current_user, only: [:index, :new, :create, :show, :edit]
     before_action :redirect_if_not_seller, only: [:new, :create, :edit]
+    before_action :redirect_if_not_logged_in, only: [:show]
     before_action :assign_store_and_departments, only: [:index, :new, :create, :edit]
     before_action :find_product, only: [:show, :edit, :update]
-    before_action :redirect_if_not_logged_in, only: [:show]
 
     def index
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @sellers = User.all.where(account_type: 2).order(:company_name)
+            @sellers = User.where(account_type: 2).order(:company_name)
             @products = @user.products.includes(:seller).order(:name)
 
         elsif params[:department_id]

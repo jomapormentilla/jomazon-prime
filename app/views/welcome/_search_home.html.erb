@@ -4,7 +4,7 @@
         <%= image_tag image_url('jomazon-logo-v2.png'), class: 'search-logo' %>
         <%= form_tag search_path do %>
             <div class="input-group mb-3">
-                <%= text_field_tag 'search', nil, placeholder: "Search Jomazon...", class: 'form-control' %>
+                <%= text_field_tag :search, nil, placeholder: "Search Jomazon...", class: 'form-control' %>
                 <%= submit_tag 'Search', class: 'btn btn-secondary' %>
             </div>
         <% end %>

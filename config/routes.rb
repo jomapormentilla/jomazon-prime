@@ -14,14 +14,13 @@ Rails.application.routes.draw do
 
   get '/sellers' => 'users#sellers'
 
-  resources :categories
-  resources :stores
-  resources :ratings
-  resources :reviews
-  resources :comments
   resources :products
+  resources :categories
+  resources :ratings, only: [:create]
+  resources :reviews, only: [:create]
+  resources :comments, only: [:create]
   
-  resources :departments do
+  resources :departments, only: [:index] do
     resources :products, only: [:index]
   end
   

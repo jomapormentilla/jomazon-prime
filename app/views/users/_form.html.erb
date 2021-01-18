@@ -21,7 +21,12 @@
     
     <br>
     <div class="d-grid gap-2">
-        <%= f.submit 'Sign Up', class: 'btn btn-outline-dark' %>
+        <% if is_current_user?( @user ) %>
+            <%= f.submit 'Save', class: 'btn btn-outline-dark' %>
+            <%= link_to 'Cancel', user_path( current_user ), class: 'btn btn-outline-warning' %>
+        <% else %>
+            <%= f.submit 'Sign Up', class: 'btn btn-outline-dark' %>
+        <% end %>
     </div>
     <hr />
 
