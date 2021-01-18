@@ -8,7 +8,7 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :ratings
 
-    has_one :cart
+    has_one :cart, foreign_key: "buyer_id"
 
     has_secure_password
 
