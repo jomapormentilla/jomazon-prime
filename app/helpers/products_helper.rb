@@ -11,7 +11,7 @@ module ProductsHelper
         if !@user.nil?
             "#{ @user.first_name }'s Products"
         elsif !@department.nil?
-            "#{ @department.name } Products"
+            "Products > #{ @department.name } (#{ @department.products.size })"
         else
             "All Products"
         end
@@ -37,11 +37,7 @@ module ProductsHelper
 
     def product_action_button( product )
         if is_logged_in?
-            if current_user.account_type == 1
-                link_to 'Add to Cart', product_path(product), class: 'btn btn-warning text-white'
-            else
-                link_to 'View Item', product_path(product), class: 'btn btn-warning text-white'
-            end
+            link_to 'View Item', product_path(product), class: 'btn btn-warning text-white'
         else
             link_to 'Login to View Item', login_path, class: 'btn btn-info text-white'
         end

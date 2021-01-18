@@ -5,7 +5,7 @@
                 <img src="<%= product.image %>" class="card-img-top" alt="..." style="width: 100%; height: auto;">
                 <div class="card-body">
                     <h4 class="card-title"><%= link_to product.name, product_path(product) %></h4>
-                    <p class="product-price">$<%= product.price %></p>
+                    <p class="product-price"><%= number_to_currency product.price %></p>
                     <p style="text-decoration: underline"><%= link_to product.seller.company_name, user_path(product.seller) %></p>
                     <p class="card-text" style="font-size: 11px;"><%= product.description %></p>
 

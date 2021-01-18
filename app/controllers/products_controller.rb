@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
     def index
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @sellers = User.all.where("account_type = ?", 2).order(:first_name)
+            @sellers = User.all.where(account_type: 2).order(:first_name)
             @products = @user.products.includes(:seller).order(:name)
 
         elsif params[:department_id]
@@ -39,7 +39,7 @@ class ProductsController < ApplicationController
     end
 
     def show
-        @related_products = Product.where("department_id = ?", @product.department_id).limit(10)
+        @related_products = Product.where(department_id: @product.department_id).limit(10)
         @review = Review.new
         @reviews = @product.reviews.order(:id)
     end

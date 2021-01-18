@@ -18,6 +18,7 @@ module ApplicationHelper
     end
 
     def parse_timestamp( timestamp )
-        timestamp.strftime("%B %d, %Y at %l:%M%P")
+        time = timestamp.in_time_zone('Eastern Time (US & Canada)')
+        time.strftime("%B %d, %Y at %l:%M%P")
     end
 end
