@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
   get '/sellers' => 'users#sellers'
 
-  get '/addtocart/:id' => 'products#addtocart', as: "addtocart"
+  get '/addtocart/:id' => 'carts#addtocart', as: "addtocart"
+  get '/checkout' => 'carts#checkout'
 
   resources :products
   resources :categories

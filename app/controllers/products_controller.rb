@@ -57,21 +57,6 @@ class ProductsController < ApplicationController
         end
     end
 
-    def addtocart
-        @product = Product.find_by_id(params[:id])
-        
-        if @product
-            @cart = Cart.find_or_create_by(buyer_id: current_user.id)
-            @cart.products << @product
-
-            flash[:notice] = "Item has been added to your cart."
-            redirect_to product_path(@product)
-        else
-            flash[:notice] = "Error. Product not found."
-            redirect_to product_path(@product)
-        end
-    end
-
     private
 
     def product_params
