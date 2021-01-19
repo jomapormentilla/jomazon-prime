@@ -1,26 +1,27 @@
 <br />
 <div class="row">
-    <div class="col-md-1"></div>
+    <div class="col-md-2"></div>
     <div class="col-md-2">
-        <%= render partial: 'users/account_settings' if @user.id == current_user.id %>
-        
+        <%= render partial: 'users/sidebar_wallet' if @user.id == current_user.id && current_user.account_type == 1 %>
+        <%= render partial: 'products/display_cart' if @user.id == current_user.id && current_user.account_type == 1 %>
+        <%= render partial: 'users/sidebar_account_settings' if @user.id == current_user.id %>
+
         <div style="text-align: right;">
-            <%= render partial: 'list_sellers', locals: { sellers: @sellers } %>
+            <%= render partial: 'list_sellers', locals: { sellers: @sellers } if @user.account_type == 2 %>
         </div>
     </div>
-    <div class="col-md-8">
+
+    <div class="col-md-6">
         <h1><%= @user.company_name %></h1>
         <p>Owner: <%= @user.first_name %> <%= @user.last_name %></p>
 
-        <hr />
-        <div class="row">
-            <h3>Products</h3>
-            <div class="d-grid gap-2"><%= add_new_product_button if current_user.account_type == 2 %></div>
-            <%= render partial: 'products/display_products_slim', locals: { products: @user.products } %>
-        </div>
+        <%= render partial: 'users/display_seller_products', locals: { user: @user } if @user.account_type == 2 %>
 
         <hr />
         <h3>Comments from Other Users</h3>
+        <div class="alert alert-light" style="border-radius: 0px;">
+            No comments to display.
+        </div>
     </div>
 </div>
 <br />

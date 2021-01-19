@@ -19,12 +19,20 @@ class CartsController < ApplicationController
             @cart = Cart.find_or_create_by(buyer_id: current_user.id)
             @cart.products << @product
 
-            flash[:notice] = "Item has been added to your cart."
             redirect_to product_path(@product)
         else
             flash[:notice] = "Error. Product not found."
             redirect_to product_path(@product)
         end
+    end
+
+    def remove_item
+        @product = Product.find_by_id(params[:id])
+        @cart = current_user.cart
+        cart_products = @cart.cart_products.where(cart_id: @cart.id, product_id: @product.id).each{ |p| p.delete }
+
+        flash[:notice] = "#{ @product.name } has been removed from your cart."
+        redirect_to user_cart_path(current_user, current_user.cart)
     end
 
     def checkout

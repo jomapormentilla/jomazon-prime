@@ -5,13 +5,11 @@
                 <%= product_image( product ) %>
                 <div class="card-body">
                     <h4 class="card-title"><%= link_to product.name, product_path(product) %></h4>
-                    <p class="product-price"><%= number_to_currency product.price %></p>
-                    <p style="text-decoration: underline"><%= link_to product.seller.company_name, user_path(product.seller) %></p>
+                    <h2><%= number_to_currency product.price %></h2>
+                    <%= link_to product.seller.company_name, user_path(product.seller) %>
+                    <br />
+                    <small class="text-muted"><%= in_stock(product) %></small>
                     <p class="card-text" style="font-size: 11px;"><%= product.description %></p>
-
-                    <div class="d-grid gap-2">
-                        <%= product_action_button( product ) %>
-                    </div>
                 </div>
             </div><br />
         </div>

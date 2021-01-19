@@ -1,12 +1,18 @@
 <div class="card text-dark bg-light mb-3" style="width: 100%;">
-    <div class="card-header text-center">Your Cart</div>
+    <h4 class="card-header text-center">Your Cart</h4>
     <div class="card-body">
         <% if !current_user.cart.products.empty? %>
-            <% current_user.cart.products.each do |item| %>
-                <li><%= item.name %></li>
+            <% current_user.cart.products.each do |product| %>
+                <h5><%= product.name %></h5>
+                <img src="<%= product.image %>" alt="..." style="width: 100%;" />
+                <hr />
             <% end %>
+
+            <div class="d-grid gap-2">
+                <%= link_to 'View Cart', user_cart_path( current_user, current_user.cart ), class: 'btn btn-custom btn-sm' %>
+            </div>
         <% else %>
-            <h5 class="card-title">Your Cart is Empty</h5>
+            <div class="alert alert-dark text-center">Your Cart is Empty</div>
         <% end %>
     </div>
 </div>

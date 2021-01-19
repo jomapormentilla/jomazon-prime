@@ -2,32 +2,9 @@
 <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-6">
-        <h1><%= @user.first_name %>'s Cart</h1>
+        <h1><%= current_user.first_name %>'s Cart</h1>
 
-        <% @user.cart.products.each do |product| %>
-            <div class="card mb-3" style="width: 100%;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                    <%= product_image( product ) %>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h1 class="card-title"><%= product.name %></h1>
-                            <h6><%= link_to product.seller.company_name, user_path(product.seller) %></h6>
-                            <h4><%= number_to_currency product.price %></h4>
-                            <p class="card-text" style="font-size: 12px;"><%= product.description %></p>
-                            <%= link_to '' %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-
-        <h1>Total: <%= number_to_currency @user.cart.total_price %></h1>
-
-        <div class="d-grid gap-2">
-            <%= link_to 'Checkout', checkout_path, class: 'btn btn-primary' %>
-        </div>
+        <%= display_cart_products %>
     </div>
 </div>
 

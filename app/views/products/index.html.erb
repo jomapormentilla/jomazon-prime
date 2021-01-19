@@ -1,12 +1,17 @@
+<div class="row">
+    <%= render partial: 'welcome/search_home' %>
+</div>
+
 <br />
 <div class="row">
+
     <div class="d-sm-none d-md-block col-md-2 text-end" style="border-right: solid 1px #aaa">
         <%= list_users_or_departments %>
     </div>
     <div class="col-md-10">
-        <%= add_new_product_button %>
         <h1><%= products_index_title %></h1>
 
         <%= render partial: 'display_products', locals: { products: @products } %>
     </div>
 </div>
+<br />

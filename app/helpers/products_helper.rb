@@ -51,20 +51,16 @@ module ProductsHelper
         end
     end
 
-    def add_new_product_button
-        if !@user.nil?
-            link_to '+ New Product', new_user_product_path(current_user), class: 'btn btn-success btn-sm float-end' if is_current_user?( @user )
-        end
-    end
-
     def product_edit_or_add_to_cart( product )
         if product.seller.id == current_user.id
             link_to 'Edit Item', edit_product_path(product), class: 'btn btn-outline-warning'
         else
-            if current_user.cart.products.include?( product )
-                content_tag :div, "This item is already in your cart", class: 'alert alert-warning text-center'
-            else
-                link_to 'Add Item to Cart', addtocart_path(product), class: 'btn btn-outline-warning' if current_user.account_type == 1
+            if current_user.account_type == 1
+                if current_user.cart.products.include?( product )
+                    content_tag :div, "This item is already in your cart", class: 'alert alert-warning text-center'
+                else
+                    link_to 'Add Item to Cart', addtocart_path(product), class: 'btn btn-outline-warning'
+                end
             end
         end
     end
@@ -74,6 +70,14 @@ module ProductsHelper
             render partial: 'products/display_cart'
         else
             content_tag :div, "Hi, #{ current_user.first_name }! You'll need to create a Buyer account to purchase this item.", class: 'alert alert-warning text-center'
+        end
+    end
+
+    def in_stock( product )
+        if product.quantity > 0
+            "In Stock"
+        else
+            "Out of Stock"
         end
     end
 end

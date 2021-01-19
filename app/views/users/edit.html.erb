@@ -5,5 +5,7 @@
         <h1>Account Settings</h1>
         <hr />
         <%= render partial: 'form', locals: { user: @user } %>
+        <br>
+        <%= link_to 'Cancel', user_path( current_user ), class: 'btn btn-secondary' %>
     </div>
 </div>
