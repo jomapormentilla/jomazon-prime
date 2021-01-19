@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-    before_action :redirect_if_not_seller, only: [:new, :create]
-    before_action :redirect_if_already_logged_in, only: [:new]
-    before_action :redirect_if_not_logged_in, only: [:show]
+    before_action :redirect_if_not_seller,          only: [:new, :create]
+    before_action :redirect_if_already_logged_in,   only: [:new]
+    before_action :redirect_if_not_logged_in,       only: [:show]
 
     def index
         @sellers = User.all.order(:first_name)
@@ -17,11 +17,12 @@ class UsersController < ApplicationController
         end
 
         @user = User.new
-        @store = Store.first
     end
 
     def create
         @user = User.new(user_params)
+        @user.store_id = Store.first.id
+
         if @user.valid?
             @user.balance = 5000.0 if @user.account_type == 1
             @user.save
@@ -50,6 +51,8 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
         @sellers = User.where(account_type: 2).order(:company_name)
+        @products = @user.products.limit(10)
+
         if !is_current_user?( @user )
             redirec_if_buyer( @user )
         end
@@ -65,8 +68,7 @@ class UsersController < ApplicationController
             :first_name,
             :last_name,
             :company_name,
-            :account_type,
-            :store_id
+            :account_type
         )
     end
 

@@ -1,0 +1,8 @@
+<% products.each do |product| %>
+    <div class="card p-0" style="width: 8rem; left: 15px;">
+        <%= product_image( product ) %>
+        <div class="card-body">
+            <h5 class="card-title"><%= product.name %></h5>
+        </div>
+    </div>
+<% end %>

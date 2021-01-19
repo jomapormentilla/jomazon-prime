@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
 
     def redirect_if_not_seller
-        if current_user.account_type != 2
+        if !current_user.nil? && current_user.account_type != 2
             flash[:message] = "You must have a Seller account to view this page."
             redirect_to user_path(current_user)
         end

@@ -38,14 +38,7 @@
         <hr />
         <h3>Related Products</h3>
         <div class="row">
-            <% @related_products.each do |product| %>
-                <div class="card p-0" style="width: 8rem;">
-                    <%= product_image( product ) %>
-                    <div class="card-body">
-                        <h5 class="card-title"><%= product.name %></h5>
-                    </div>
-                </div>
-            <% end %>
+            <%= render partial: 'products/display_products_slim', locals: { products: @related_products } %>
         </div>
     </div>
 

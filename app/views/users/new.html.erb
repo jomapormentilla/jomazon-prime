@@ -4,6 +4,10 @@
         <br />
         <h1>Create An Account</h1>
         <hr />
+        <%= render partial: 'layouts/errors', locals: { object: @user } %>
         <%= render partial: 'form', locals: { user: @user } %>
+        
+        <hr />
+        <p class="text-center">Already a Member? <%= link_to 'Sign In', login_path %> Here</p>
     </div>
 </div>

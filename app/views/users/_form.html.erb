@@ -1,5 +1,4 @@
 <%= form_for user do |f| %>
-    <%= f.hidden_field :store_id, value: @store.id %>
     <%= f.label :username %>
     <%= f.text_field :username, class: 'form-control' %><br />
     <%= f.label :email %>
@@ -13,22 +12,15 @@
     <%= f.label :company_name %>
     <%= f.text_field :company_name, class: 'form-control' %><br />
     
-    <label for="user_account_type">Select an Account Type</label>
-    <select id="user_account_type" name="user[account_type]" class="form-control">
-        <option value="1">Buyer</option>
-        <option value="2">Seller</option>
-    </select>
-    
+    <%= render_account_type_for_form(f) %>
+
     <br>
     <div class="d-grid gap-2">
-        <% if is_current_user?( @user ) %>
+        <% if !current_user.nil? %>
             <%= f.submit 'Save', class: 'btn btn-outline-dark' %>
-            <%= link_to 'Cancel', user_path( current_user ), class: 'btn btn-outline-warning' %>
+            <%= link_to 'Cancel', user_path( current_user ), class: 'btn btn-outline-warning' if !current_user.nil? %>
         <% else %>
             <%= f.submit 'Sign Up', class: 'btn btn-outline-dark' %>
         <% end %>
     </div>
-    <hr />
-
-    <p class="text-center">Already a Member? <%= link_to 'Sign In', login_path %> Here</p>
 <% end %>

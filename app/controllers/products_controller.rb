@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
-    before_action :redirect_if_not_seller, only: [:new, :create, :edit]
-    before_action :redirect_if_not_logged_in, only: [:show]
-    before_action :assign_store_and_departments, only: [:index, :new, :create, :edit]
-    before_action :find_product, only: [:show, :edit, :update]
+    before_action :assign_store_and_departments,    only: [:index, :new, :create, :edit]
+    before_action :redirect_if_not_seller,          only: [:new, :create, :edit]
+    before_action :redirect_if_not_logged_in,       only: [:show]
+    before_action :find_product,                    only: [:show, :edit, :update]
 
     def index
         if params[:user_id]
