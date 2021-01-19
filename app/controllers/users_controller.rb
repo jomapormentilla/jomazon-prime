@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def sellers
-        @sellers = User.all.where("account_type = ?", 2).order(:first_name)
+        @sellers = User.is_a_seller.order(:first_name)
     end
 
     def new
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
-        @sellers = User.where(account_type: 2).order(:company_name)
+        @sellers = User.is_a_seller.order(:company_name)
         @products = @user.products.limit(10)
 
         if !is_current_user?( @user )
@@ -63,7 +63,6 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(
-            :username,
             :email,
             :password,
             :first_name,

@@ -20,7 +20,6 @@ class SessionsController < ApplicationController
             u.first_name = auth[:info][:first_name]
             u.last_name = auth[:info][:last_name]
             u.email = auth[:info][:email]
-            u.username = auth[:info][:email].split("@").first
             u.password = SecureRandom.hex(15)
             u.store_id = Store.first.id
         end
@@ -51,25 +50,9 @@ class SessionsController < ApplicationController
             end
             @user.company_name = params[:company_name]
             @user.save
-            
+
             redirect_to root_path
         end
-    end
-
-    def complete_omniauth
-        byebug
-        @user = User.find_by_id(session[:user_id])
-
-        if params[:user][:account_type].to_i == 1
-            @cart = Cart.create(user_id: @user.id)
-            @user.balance = 5000.0
-            @user.account_type = 1
-        elsif params[:user][:account_type].to_i == 2
-            @user.account_type = 2
-        end
-
-        @user.save
-        redirect_to root_path
     end
 
     def destroy

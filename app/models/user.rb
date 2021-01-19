@@ -14,6 +14,9 @@ class User < ApplicationRecord
 
     validates :email, presence: true, uniqueness: true
 
+    scope :is_a_seller, -> { where(account_type: 2) }
+    scope :is_a_buyer, -> { where(account_type: 1) }
+
     def slug
         string = "#{ self.first_name } #{ self.last_name }"
         string.downcase.gsub(/\W/," ").gsub(/\s+/," ").gsub(" ","-")

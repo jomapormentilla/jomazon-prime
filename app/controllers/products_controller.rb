@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     def index
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
-            @sellers = User.where(account_type: 2).order(:company_name)
+            @sellers = User.is_a_seller.order(:company_name)
             @products = @user.products.includes(:seller).order(:name)
 
         elsif params[:department_id]
