@@ -25,9 +25,6 @@
         <%= d.text_field :name, placeholder: 'Select from above, or create your own', class: 'form-control' %>
     <% end %>
     <br />
-
-    <%= f.hidden_field :store_id, value: store.id %>
-    <%= f.hidden_field :seller_id, value: user.id %>
     
     <div class="d-grid gap-2">
         <%= f.submit 'Submit', class: 'btn btn-custom' %>

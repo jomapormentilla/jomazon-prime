@@ -26,9 +26,12 @@ class ProductsController < ApplicationController
 
     def create
         @product = Product.new(product_params)
+        @product.seller_id = current_user.id
+        @product.store_id = @store.id
 
         if @product.valid?
             @product.save
+
             redirect_to product_path(@product)
         else
             @product.build_department
@@ -77,8 +80,6 @@ class ProductsController < ApplicationController
             :description,
             :price,
             :quantity,
-            :store_id,
-            :seller_id,
             :department_id,
             department_attributes: [:name, :store_id]
         )

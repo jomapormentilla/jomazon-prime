@@ -1,11 +1,10 @@
 <div class="row">
     <div class="col-md-12 nav-users">
         <%= link_to 'Sellers', sellers_path %>
-        <%= link_to 'Departments', departments_path %>
         <%= link_to 'Products', products_path %>
         <%= link_to 'Categories', user_path(current_user) %>
         <%= link_to 'Wishlist', user_path(current_user) %>
         <%= link_to 'Your Orders', user_path(current_user) %>
-        <%= link_to 'Cart (0)', user_path(current_user) %>
+        <%= link_to "Cart", user_cart_path(current_user, current_user.cart) %>
     </div>
 </div>
