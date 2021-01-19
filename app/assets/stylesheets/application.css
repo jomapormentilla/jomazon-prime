@@ -92,3 +92,7 @@ a {
 .related-product-img {
     height: 150px;
 }
+
+.product-image-height {
+    height: auto;
+}

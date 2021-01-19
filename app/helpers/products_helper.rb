@@ -45,9 +45,9 @@ module ProductsHelper
 
     def product_image( product )
         if product.image != nil
-            link_to image_tag(image_url(product.image), class: 'card-img-top'), product_path(product)
+            link_to image_tag(image_url(product.image), class: 'card-img-top product-image-height'), product_path(product)
         else
-            link_to image_tag(image_url('placeholder-image.png'), class: 'card-img-top'), product_path(product)
+            link_to image_tag(image_url('placeholder-image.png'), class: 'card-img-top product-image-height'), product_path(product)
         end
     end
 
