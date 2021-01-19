@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h1>Welcome, <%= @user.first_name %>!</h1>
+        
+
+        <p>To complete your account setup, please select an account type and provide your company name:</p>
+        <hr />
+        <%= form_tag complete_signup_path do %>
+            <%= radio_button_tag :account_type, 1, checked: true %>
+            Buyer
+            <br />
+            <%= radio_button_tag :account_type, 2 %>
+            Seller
+            
+            <br /><br />
+            <%= text_field_tag :company_name, nil, placeholder: 'Company Name', class: 'form-control' %>
+
+            <br />
+            <div class="d-grid gap-2">
+                <%= submit_tag 'Continue', class: 'btn btn-custom' %>
+            </div>
+        <% end %>
+    </div>
+</div>

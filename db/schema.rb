@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_18_220958) do
+ActiveRecord::Schema.define(version: 2021_01_19_180159) do
 
   create_table "buyer_products", force: :cascade do |t|
     t.integer "buyer_id"
@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 2021_01_18_220958) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "balance", precision: 10, scale: 2
+    t.string "provider"
+    t.string "uid"
     t.index ["store_id"], name: "index_users_on_store_id"
   end
 

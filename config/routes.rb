@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root "welcome#home"
+
+  get '/auth/google_oauth2/callback' => 'sessions#omniauth'
+  get '/newuser/account_type' => 'sessions#account_type', as: "account_type"
+  post '/newuser/account_type' => 'sessions#account_type', as: "complete_signup"
   
   get '/search' => 'welcome#search'
   post '/search' => 'welcome#search'

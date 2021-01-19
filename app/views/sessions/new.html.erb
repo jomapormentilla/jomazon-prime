@@ -16,6 +16,11 @@
 
             <hr />
             <p class="text-center">Need an Account? <%= link_to 'Sign Up', signup_path %> Here</p>
+
+            <hr />
+            <div class="d-grid gap-2">
+                <%= link_to 'Login with Google', '/auth/google_oauth2', method: 'post', class: 'btn btn-custom' %>
+            </div>
         <% end %>
     </div>
 </div>

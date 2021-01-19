@@ -1,6 +1,6 @@
 module ApplicationHelper
     def navigation_by_account_type
-        if is_logged_in?
+        if is_logged_in? && !current_user.account_type.nil?
             if current_user.account_type == 2
                 render partial: 'layouts/nav_seller'
             else

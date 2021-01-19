@@ -5,6 +5,6 @@
         <%= link_to 'Categories', user_path(current_user) %>
         <%= link_to 'Wishlist', user_path(current_user) %>
         <%= link_to 'Your Orders', user_path(current_user) %>
-        <%= link_to "Cart", user_cart_path(current_user.id, current_user.cart.id) %>
+        <%= link_to "Cart", user_cart_path(current_user.id, current_user.cart.id) if !current_user.cart.nil? %>
     </div>
 </div>
