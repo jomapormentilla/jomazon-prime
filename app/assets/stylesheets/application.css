@@ -24,6 +24,10 @@ body {
     min-height: 100vh;
 }
 
+.field_with_errors {
+    color: red;
+}
+
 h1, h2, h3, h4, h5, h6, .product-price {
     font-family: 'Bebas Neue', cursive;
 }

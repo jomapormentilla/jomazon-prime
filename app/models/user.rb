@@ -12,8 +12,11 @@ class User < ApplicationRecord
 
     has_secure_password
 
-    validates :password, confirmation: true
     validates :email, presence: true, uniqueness: true
+    validates :password, presence: true
+    validates :password, confirmation: true
+    validates :first_name, presence: true
+    validates :last_name, presence: true
     validates :company_name, presence: true
 
     scope :is_a_seller, -> { where(account_type: 2) }
