@@ -44,6 +44,7 @@ class ProductsController < ApplicationController
         @related_products = Product.where(department_id: @product.department_id).limit(10)
         @review = Review.new
         @reviews = @product.reviews.order(id: :desc)
+        @cart = current_user.cart.cart_products.not_purchased
     end
 
     def edit

@@ -1,10 +1,10 @@
 <div class="card text-dark bg-light mb-3" style="width: 100%;">
     <h4 class="card-header text-center">Your Cart (<%= current_user.cart_size %>)</h4>
     <div class="card-body">
-        <% if !current_user.cart.cart_products.not_purchased.empty? %>
-            <% current_user.cart.products.each do |product| %>
-                <h5><%= product.name %></h5>
-                <%= product_image( product ) %>
+        <% if !@cart.empty? %>
+            <% @cart.each do |cart| %>
+                <h5><%= cart.product.name %></h5>
+                <%= product_image( cart.product ) %>
                 <hr />
             <% end %>
 

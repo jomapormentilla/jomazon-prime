@@ -6,11 +6,16 @@ class CartsController < ApplicationController
                 flash[:notice] = "Error: Invalid Cart."
                 redirect_to root_path
             end
-            @cart = current_user.cart.cart_products.where(purchased: false)
+            @cart = current_user.cart.cart_products.not_purchased
         else
             flash[:notice] = "Error: Invalid Cart. Access Denied."
             redirect_to root_path
         end
+    end
+
+    def purchases
+        @user = current_user
+        @cart = current_user.cart.cart_products.purchased
     end
 
     def addtocart

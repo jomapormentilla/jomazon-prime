@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get '/add-to-cart/:id' => 'carts#addtocart', as: "addtocart"
   post '/remove-item/:id' => 'carts#remove_item', as: "remove_item"
   post '/checkout' => 'carts#checkout', as: "checkout"
+  get '/purchases' => 'carts#purchases'
 
   resources :products
   resources :ratings, only: [:create]

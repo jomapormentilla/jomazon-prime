@@ -55,6 +55,7 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @sellers = User.is_a_seller.order(:company_name)
         @products = @user.products.limit(10)
+        @cart = current_user.cart.cart_products.not_purchased
 
         # if !is_current_user?( @user )
         #     redirec_if_buyer( @user )
