@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in, :is_a_seller?
+    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in, :is_a_seller?, :redirect_if_signup_incomplete
     
     private
 
@@ -28,5 +28,11 @@ class ApplicationController < ActionController::Base
 
     def is_current_user?( user )
         user.id == session[:user_id]
+    end
+
+    def redirect_if_signup_incomplete
+        if is_logged_in?
+            redirect_to account_type_path if current_user.account_type == nil
+        end
     end
 end

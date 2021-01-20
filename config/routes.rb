@@ -10,20 +10,17 @@ Rails.application.routes.draw do
   
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+  get '/sellers' => 'users#sellers'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
-
   get '/logout' => 'sessions#destroy'
 
-  get '/sellers' => 'users#sellers'
-
-  get '/addtocart/:id' => 'carts#addtocart', as: "addtocart"
+  get '/add-to-cart/:id' => 'carts#addtocart', as: "addtocart"
   post '/remove-item/:id' => 'carts#remove_item', as: "remove_item"
   post '/checkout' => 'carts#checkout', as: "checkout"
 
   resources :products
-  resources :categories
   resources :ratings, only: [:create]
   resources :reviews, only: [:create]
   resources :comments, only: [:create]

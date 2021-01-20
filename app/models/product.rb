@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
     belongs_to :store
-    belongs_to :seller, class_name: "User"
+    belongs_to :seller, class_name: "User", dependent: :destroy
     belongs_to :department
 
     has_many :product_categories

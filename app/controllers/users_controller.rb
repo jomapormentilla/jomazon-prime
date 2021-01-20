@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     before_action :redirect_if_not_seller,          only: [:new, :create]
     before_action :redirect_if_already_logged_in,   only: [:new]
     before_action :redirect_if_not_logged_in,       only: [:show]
+    before_action :redirect_if_signup_incomplete,   only: [:show]
 
     def index
         @sellers = User.all.order(:first_name)
