@@ -32,6 +32,6 @@ class User < ApplicationRecord
     end
 
     def cart_size
-        self.cart.products.size
+        self.cart.cart_products.not_purchased.size
     end
 end

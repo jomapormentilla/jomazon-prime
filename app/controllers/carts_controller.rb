@@ -6,6 +6,7 @@ class CartsController < ApplicationController
                 flash[:notice] = "Error: Invalid Cart."
                 redirect_to root_path
             end
+            @cart = current_user.cart.cart_products.where(purchased: false)
         else
             flash[:notice] = "Error: Invalid Cart. Access Denied."
             redirect_to root_path
@@ -36,6 +37,20 @@ class CartsController < ApplicationController
     end
 
     def checkout
+        new_balance = current_user.balance -= current_user.cart.total_price
+
+        if new_balance < 0
+            flash[:notice] = "Insufficient Funds"
+            redirect_to user_cart_path( current_user, current_user.cart )
+        else
+            current_user.cart.cart_products.each do |cart_product|
+                cart_product.purchased = true
+                cart_product.save
+            end
+        end
         
+        current_user.save
+
+        redirect_to user_path( current_user )
     end
 end

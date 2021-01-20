@@ -1,16 +1,16 @@
-<% @user.cart.products.each do |product| %>
+<% @cart.each do |cart| %>
     <div class="card mb-3" style="width: 100%;">
         <div class="row g-0">
             <div class="col-md-4">
-            <%= product_image( product ) %>
+            <%= product_image( cart.product ) %>
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h1 class="card-title"><%= product.name %></h1>
-                    <h6><%= link_to product.seller.company_name, user_path(product.seller) %></h6>
-                    <h4><%= number_to_currency product.price %></h4>
-                    <p class="card-text" style="font-size: 12px;"><%= product.description %></p>
-                    <%= link_to 'Remove Item', remove_item_path( product ), method: 'post', class: 'btn btn-outline-danger btn-sm' %>
+                    <h1 class="card-title"><%= cart.product.name %></h1>
+                    <h6><%= link_to cart.product.seller.company_name, user_path(cart.product.seller) %></h6>
+                    <h4><%= number_to_currency cart.product.price %></h4>
+                    <p class="card-text" style="font-size: 12px;"><%= cart.product.description %></p>
+                    <%= link_to 'Remove Item', remove_item_path( cart.product ), method: 'post', class: 'btn btn-outline-danger btn-sm' %>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
 <h1 style="text-align: right;"><small class="text-muted">Total:</small> <span style="color: #3e5da1;"><%= number_to_currency @user.cart.total_price %></span></h1>
 
 <div class="d-grid gap-2">
-    <%= link_to 'Place Order', checkout_path, class: 'btn btn-success' %>
+    <%= link_to 'Place Order', checkout_path, method: 'post', class: 'btn btn-success' %>
 </div>
 
 <br /><br /><br />

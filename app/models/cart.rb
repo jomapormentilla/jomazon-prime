@@ -6,7 +6,9 @@ class Cart < ApplicationRecord
 
     def total_price
         total = 0
-        self.products.each{ |p| total += p.price }
+        self.cart_products.each do |cart|
+            total += cart.product.price if cart.purchased == false
+        end
         
         total
     end
