@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
     def show
         @related_products = Product.where(department_id: @product.department_id).limit(10)
         @review = Review.new
-        @reviews = @product.reviews.order(:id)
+        @reviews = @product.reviews.order(id: :desc)
     end
 
     def edit
@@ -72,7 +72,7 @@ class ProductsController < ApplicationController
 
     def assign_store_and_departments
         @store = Store.first
-        @departments = Department.all
+        @departments = Department.all.order(:name)
     end
 
     def find_product

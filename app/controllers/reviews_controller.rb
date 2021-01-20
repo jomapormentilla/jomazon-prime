@@ -4,10 +4,10 @@ class ReviewsController < ApplicationController
 
         if @review.valid?
             @review.save
-            redirect_to product_path(@review.product)
         else
-            render :template => 'products/show'
+            flash[:notice] = "Review cannot be blank."
         end 
+        redirect_to product_path(@review.product)
     end
 
     private

@@ -12,7 +12,9 @@ class User < ApplicationRecord
 
     has_secure_password
 
+    validates :password, confirmation: true
     validates :email, presence: true, uniqueness: true
+    validates :company_name, presence: true
 
     scope :is_a_seller, -> { where(account_type: 2) }
     scope :is_a_buyer, -> { where(account_type: 1) }
@@ -24,5 +26,9 @@ class User < ApplicationRecord
 
     def self.find_by_slug( slug )
         self.all.detect{ |obj| obj.slug == slug }
+    end
+
+    def cart_size
+        self.cart.products.size
     end
 end

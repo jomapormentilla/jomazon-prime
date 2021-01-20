@@ -22,11 +22,12 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         @user.store_id = Store.first.id
-
+        
         if @user.valid?
-            @cart = Cart.create(buyer_id: @user.id) if @user.account_type == 1
             @user.balance = 5000.0 if @user.account_type == 1
             @user.save
+            @cart = Cart.create(buyer_id: @user.id) if @user.account_type == 1
+            byebug
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
@@ -54,9 +55,9 @@ class UsersController < ApplicationController
         @sellers = User.is_a_seller.order(:company_name)
         @products = @user.products.limit(10)
 
-        if !is_current_user?( @user )
-            redirec_if_buyer( @user )
-        end
+        # if !is_current_user?( @user )
+        #     redirec_if_buyer( @user )
+        # end
     end
 
     private
@@ -68,7 +69,8 @@ class UsersController < ApplicationController
             :first_name,
             :last_name,
             :company_name,
-            :account_type
+            :account_type,
+            :password_confirmation
         )
     end
 

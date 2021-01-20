@@ -14,4 +14,12 @@ module UsersHelper
             f.hidden_field :user_account_type, value: current_user.account_type
         end
     end
+
+    def user_image( user )
+        if user.image != nil
+            image_tag(image_url(user.image), class: 'card-img-top product-image-height')
+        else
+            image_tag(image_url('placeholder-image.png'), class: 'card-img-top product-image-height')
+        end
+    end
 end

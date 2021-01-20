@@ -36,5 +36,6 @@ class CartsController < ApplicationController
     end
 
     def checkout
+        
     end
 end

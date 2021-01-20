@@ -3,11 +3,13 @@
     <%= f.text_field :email, class: 'form-control' %><br />
     <%= f.label :password %>
     <%= f.password_field :password, class: 'form-control' %><br />
-    <%= f.label :first_name %>
+    <%= f.label :password_confirmation, 'Confirm Password' %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %><br />
+    <%= f.label :first_name, 'First Name' %>
     <%= f.text_field :first_name, class: 'form-control' %><br />
-    <%= f.label :last_name %>
+    <%= f.label :last_name, 'Last Name' %>
     <%= f.text_field :last_name, class: 'form-control' %><br />
-    <%= f.label :company_name %>
+    <%= f.label :company_name, 'Company Name' %>
     <%= f.text_field :company_name, class: 'form-control' %><br />
     
     <%= render_account_type_for_form(f) %>
