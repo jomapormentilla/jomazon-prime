@@ -56,7 +56,7 @@ module ProductsHelper
             link_to 'Edit Item', edit_product_path(product), class: 'btn btn-outline-warning'
         else
             if current_user.account_type == 1
-                if current_user.cart.products.include?( product )
+                if current_user.cart.cart_products.not_purchased.any?{|cart| cart.product == product }
                     content_tag :div, "This item is already in your cart", class: 'alert alert-warning text-center'
                 else
                     link_to 'Add Item to Cart', addtocart_path(product), class: 'btn btn-outline-warning'

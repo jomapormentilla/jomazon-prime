@@ -21,10 +21,11 @@ Rails.application.routes.draw do
   post '/checkout' => 'carts#checkout', as: "checkout"
   get '/purchases' => 'carts#purchases'
 
-  resources :products
-  resources :ratings, only: [:create]
-  resources :reviews, only: [:create]
   resources :comments, only: [:create]
+  resources :reviews, only: [:create]
+  resources :ratings, only: [:create]
+  
+  resources :products
   
   resources :departments, only: [:index] do
     resources :products, only: [:index]

@@ -15,7 +15,7 @@ class CartsController < ApplicationController
 
     def purchases
         @user = current_user
-        @cart = current_user.cart.cart_products.purchased
+        @cart = current_user.cart.cart_products.purchased.order(id: :desc)
     end
 
     def addtocart

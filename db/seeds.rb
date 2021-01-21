@@ -1,10 +1,10 @@
 def start
-    # create_store
-    # create_departments
-    # create_sellers
-    # create_buyers
-    # create_products
-    # get_images
+    create_store
+    create_departments
+    create_sellers
+    create_buyers
+    create_products
+    get_images
     get_reviews
 end
 
