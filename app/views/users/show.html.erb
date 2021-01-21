@@ -6,10 +6,6 @@
         <%= render partial: 'users/sidebar_account_settings' if @user.id == current_user.id %>
         <%= render partial: 'users/sidebar_wallet' if @user.id == current_user.id && current_user.account_type == 1 %>
         <%= render partial: 'products/display_cart' if @user.id == current_user.id && current_user.account_type == 1 %>
-
-        <div style="text-align: right;">
-            <%= render partial: 'list_sellers', locals: { sellers: @sellers } if @user.account_type == 2 %>
-        </div>
     </div>
 
     <div class="col-md-6">

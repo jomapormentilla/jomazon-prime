@@ -8,14 +8,14 @@ class ProductsController < ApplicationController
         if params[:user_id]
             @user = User.find_by_id(params[:user_id])
             @sellers = User.is_a_seller.order(:company_name)
-            @products = @user.products.includes(:seller).order(:name)
+            @products = @user.products.includes(:seller, :ratings).order(:name)
 
         elsif params[:department_id]
             @department = Department.find_by_id(params[:department_id])
-            @products = @department.products.includes(:seller).order(:name)
+            @products = @department.products.includes(:seller, :ratings).order(:name)
 
         else
-            @products = Product.all.includes(:seller).order(:name)
+            @products = Product.all.includes(:seller, :ratings).order(:name)
         end
     end
 

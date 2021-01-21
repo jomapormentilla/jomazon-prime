@@ -1,0 +1,14 @@
+<div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <%= user_image( seller ) %>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%= link_to "#{ seller.first_name } #{ seller.last_name }", user_path(seller) %></h5>
+                <p class="card-text"><%= link_to seller.company_name, user_path( seller ) %></p>
+                <p class="card-text"><small class="text-muted">Member Since: <%= parse_timestamp( seller.created_at ) %></small></p>
+            </div>
+        </div>
+    </div>
+</div>

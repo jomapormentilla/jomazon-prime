@@ -1,12 +1,14 @@
 <br />
 <div class="row">
     <div class="col-md-2"></div>
+    <div class="col-md-8 text-center"><h1><%= current_user.first_name %>'s Cart <small class="text-muted">(<%= @cart.size %>)</small></h1><hr /></div>
+    <div class="col-md-2"></div>
+    
+    <div class="col-md-2"></div>
     <div class="col-md-2">
         <%= render partial: 'users/sidebar_wallet' if @user.id == current_user.id && current_user.account_type == 1 %>
     </div>
     <div class="col-md-6">
-        <h1><%= current_user.first_name %>'s Cart <small class="text-muted">(<%= @cart.size %>)</small></h1>
-
         <%= display_cart_products( @cart ) %>
 
         <%= render partial: 'place_order_button' if !@cart.empty? %>

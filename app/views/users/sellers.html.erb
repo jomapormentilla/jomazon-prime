@@ -1,11 +1,12 @@
 <br />
 <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-10">
+    <div class="col-md-8">
         <h1>All Sellers</h1>
+        <hr />
         
         <% @sellers.each do |seller| %>
-            <li><%= link_to "#{ seller.first_name } #{ seller.last_name }", user_path(seller) %></li>
+            <%= render partial: 'display_seller_card', locals: { seller: seller } %>
         <% end %>
     </div>
 </div>

@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-md-12 nav-users">
         <%= link_to 'Sellers', sellers_path %>
+        <%= link_to 'All Products', products_path %>
         <%= link_to 'Your Products', user_products_path(current_user) %>
         <%= link_to '+ New Product', new_user_product_path(current_user) %>
     </div>

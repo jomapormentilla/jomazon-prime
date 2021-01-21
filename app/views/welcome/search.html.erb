@@ -1,13 +1,24 @@
-<br />
 <div class="row">
+    <%= render partial: 'search_home' %>
+    <div class="col-md-12"><br /></div>
+
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <h1>Search Results</h1>
         <hr />
-        <div class="alert alert-primary text-center"><%= @products.size %> results found.</div>
+        <div class="alert alert-primary text-center"><%= @products.size + @users.size %> results found.</div>
+        
+        <%= content_tag :h3, "#{ @products.size } Product#{ 's' if @products.size != 1 }:" if @products.size > 0 %>
+        
         <% @products.each do |product| %>
             In <%= link_to product.department.name, department_products_path( product.department ) %>:
             <%= render partial: 'products/display_single_product', locals: { product: product } %>
+        <% end %>
+
+        <%= content_tag :h3, "#{ @users.size } User#{ 's' if @users.size != 1 }:" if @users.size > 0 %>
+
+        <% @users.each do |user| %>
+            <%= render partial: 'users/display_seller_card', locals: { seller: user } %>
         <% end %>
     </div>
 </div>
