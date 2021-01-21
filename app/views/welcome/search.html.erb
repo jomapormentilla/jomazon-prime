@@ -4,6 +4,10 @@
     <div class="col-md-8">
         <h1>Search Results</h1>
         <hr />
-        <%= @results %>
+        <div class="alert alert-primary text-center"><%= @products.size %> results found.</div>
+        <% @products.each do |product| %>
+            In <%= link_to product.department.name, department_products_path( product.department ) %>:
+            <%= render partial: 'products/display_single_product', locals: { product: product } %>
+        <% end %>
     </div>
 </div>

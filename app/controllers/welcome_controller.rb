@@ -8,10 +8,10 @@ class WelcomeController < ApplicationController
     end
 
     def search
-        if !params[:search]
+        if !params[:q]
             redirect_to root_path
         end
-        
-        @results = "You searched for: #{ params[:search] }"
+
+        @products = Product.where("name LIKE ?", "%#{ params[:q] }%")
     end
 end
