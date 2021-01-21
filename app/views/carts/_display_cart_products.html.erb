@@ -11,16 +11,7 @@
                     <h4><%= number_to_currency cart.product.price %></h4>
 
                     <p>
-                        <% if cart.product.ratings != [] %>
-                            You rated this product: <strong class="rating"><%= @rating.value %></strong> stars.
-                        <% else %>
-                            Rate this product:
-                            <% i=1 %>
-                            <% until i == 6 %>
-                                <%= link_to "#{ i }", "#{ product_ratings_path( cart.product ) }?rating=#{ i }", method: 'post' %>
-                                <% i += 1 %>
-                            <% end %>
-                        <% end %>
+                        <%= render partial: 'display_rating_option', locals: { cart: cart, rating: @rating } %>
                     </p>
 
                     <p class="card-text" style="font-size: 12px;"><%= cart.product.description %></p>

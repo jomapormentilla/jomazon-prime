@@ -13,12 +13,9 @@ class Product < ApplicationRecord
     has_many :cart_products
     has_many :carts, through: :cart_products
 
-    # validates :name, presence: true, uniqueness: true
     validates :description, presence: true
     validates :price, numericality: { greater_than: 0 }
     validates :quantity, numericality: { greater_than: 0 }
-
-    # accepts_nested_attributes_for :department, reject_if: proc{ |attr| attr['name'].blank? || attr['store_id'].blank? }
 
     def department_attributes=(attributes)
         if attributes[:name] != ""

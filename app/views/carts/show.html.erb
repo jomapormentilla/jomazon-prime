@@ -6,11 +6,7 @@
 
         <%= display_cart_products( @cart ) %>
 
-        <h1 style="text-align: right;"><small class="text-muted">Total:</small> <span style="color: #3e5da1;"><%= number_to_currency @user.cart.total_price %></span></h1>
-
-        <div class="d-grid gap-2">
-            <%= link_to 'Place Order', checkout_path, method: 'post', class: 'btn btn-success' %>
-        </div>
+        <%= render partial: 'place_order_button' if !@cart.empty? %>
     </div>
 </div>
 

@@ -1,0 +1,10 @@
+<% if cart.product.ratings != [] %>
+    You rated this product: <strong class="rating"><%= cart.product.ratings.personal_rating(cart.product) %></strong> stars.
+<% elsif cart.purchased == true %>
+    Rate this product:
+    <% i=1 %>
+    <% until i == 6 %>
+        <%= link_to "#{ i }", "#{ product_ratings_path( cart.product ) }?rating=#{ i }", method: 'post' %>
+        <% i += 1 %>
+    <% end %>
+<% end %>
