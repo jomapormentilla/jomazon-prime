@@ -46,17 +46,16 @@ class CartsController < ApplicationController
         new_balance = current_user.balance -= current_user.cart.total_price
 
         if new_balance < 0
-            flash[:notice] = "Insufficient Funds"
+            flash[:notice] = "Error: Insufficient Funds."
             redirect_to user_cart_path( current_user, current_user.cart )
         else
             current_user.cart.cart_products.each do |cart_product|
                 cart_product.purchased = true
                 cart_product.save
             end
+            current_user.save
+            redirect_to user_path( current_user )
         end
         
-        current_user.save
-
-        redirect_to user_path( current_user )
     end
 end

@@ -18,7 +18,7 @@
 
         <%= render partial: 'users/display_seller_products', locals: { user: @user } if @user.account_type == 2 %>
 
-        <%= render partial: 'carts/display_recent_purchases', locals: { cart_products: @purchased_items } if current_user.account_type == 1 %>
+        <%= render partial: 'carts/display_recent_purchases', locals: { cart_products: @purchased_items } if @user.account_type == 1 %>
 
         <hr />
         <h3>Comments from Other Users</h3>
