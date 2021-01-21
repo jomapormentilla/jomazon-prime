@@ -9,6 +9,20 @@
                     <h1 class="card-title"><%= cart.product.name %></h1>
                     <h6><%= link_to cart.product.seller.company_name, user_path(cart.product.seller) %></h6>
                     <h4><%= number_to_currency cart.product.price %></h4>
+
+                    <p>
+                        <% if cart.product.ratings != [] %>
+                            You rated this product: <strong class="rating"><%= @rating.value %></strong> stars.
+                        <% else %>
+                            Rate this product:
+                            <% i=1 %>
+                            <% until i == 6 %>
+                                <%= link_to "#{ i }", "#{ product_ratings_path( cart.product ) }?rating=#{ i }", method: 'post' %>
+                                <% i += 1 %>
+                            <% end %>
+                        <% end %>
+                    </p>
+
                     <p class="card-text" style="font-size: 12px;"><%= cart.product.description %></p>
                     <%= content_tag :p, "Purchased on #{ parse_timestamp( cart.updated_at ) }", class: 'text-muted' if cart[:purchased] == true %>
                     <%= link_to 'Remove Item', remove_item_path( cart.product ), method: 'post', class: 'btn btn-outline-danger btn-sm' if cart[:purchased] == false %>

@@ -23,9 +23,10 @@ Rails.application.routes.draw do
 
   resources :comments, only: [:create]
   resources :reviews, only: [:create]
-  resources :ratings, only: [:create]
   
-  resources :products
+  resources :products do
+    resources :ratings, only: [:create]
+  end
   
   resources :departments, only: [:index] do
     resources :products, only: [:index]

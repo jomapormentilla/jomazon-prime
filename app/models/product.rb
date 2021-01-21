@@ -26,4 +26,18 @@ class Product < ApplicationRecord
             self.department.update(attributes)
         end
     end
+
+    def get_rating
+        total = 0
+        self.ratings.each do |r|
+            total += r.value
+        end
+
+        if total == 0
+            "--"
+        else
+            result = total / self.ratings.size
+            result.round(2)
+        end
+    end
 end
