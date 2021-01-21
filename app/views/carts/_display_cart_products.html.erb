@@ -10,9 +10,7 @@
                     <h6><%= link_to cart.product.seller.company_name, user_path(cart.product.seller) %></h6>
                     <h4><%= number_to_currency cart.product.price %></h4>
 
-                    <p>
-                        <%= render partial: 'display_rating_option', locals: { cart: cart, rating: @rating } %>
-                    </p>
+                    <p><%= render partial: 'display_rating_option', locals: { cart: cart, rating: @rating } %></p>
 
                     <p class="card-text" style="font-size: 12px;"><%= cart.product.description %></p>
                     <%= content_tag :p, "Purchased on #{ parse_timestamp( cart.updated_at ) }", class: 'text-muted' if cart[:purchased] == true %>

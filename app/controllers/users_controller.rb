@@ -27,7 +27,7 @@ class UsersController < ApplicationController
         if @user.valid?
             @user.balance = 5000.0 if @user.account_type == 1
             @user.save
-            @cart = Cart.create(buyer_id: @user.id) if @user.account_type == 1
+            @cart = Cart.create(buyer_id: @user.id)
             byebug
             session[:user_id] = @user.id
             redirect_to user_path(@user)
@@ -55,11 +55,8 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @sellers = User.is_a_seller.order(:company_name)
         @products = @user.products.limit(10)
-        @cart = current_user.cart.cart_products.not_purchased
-
-        # if !is_current_user?( @user )
-        #     redirec_if_buyer( @user )
-        # end
+        @cart = current_user.cart.nil? ? [] : current_user.cart.cart_products.not_purchased
+        @purchased_items = current_user.cart.nil? ? [] : current_user.cart.cart_products.purchased.order(id: :desc).limit(10)
     end
 
     private

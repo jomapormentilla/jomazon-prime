@@ -31,7 +31,7 @@ class Product < ApplicationRecord
         end
 
         if total == 0
-            "--"
+            "0.00"
         else
             result = total / self.ratings.size
             result.round(2)

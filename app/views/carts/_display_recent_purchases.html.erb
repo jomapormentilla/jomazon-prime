@@ -1,0 +1,15 @@
+<h3>Recent Purchases</h3>
+<div class="row">
+    <% if cart_products.nil? %>
+        Your have no recent purchases.
+    <% else %>
+        <% cart_products.each do |cart| %>
+            <div class="card p-0" style="width: 8rem; left: 15px;">
+                <%= product_image( cart.product ) %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= cart.product.name %></h5>
+                </div>
+            </div>
+        <% end %>
+    <% end %>
+</div>

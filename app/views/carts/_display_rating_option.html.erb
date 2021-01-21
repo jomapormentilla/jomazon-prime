@@ -4,7 +4,7 @@
     Rate this product:
     <% i=1 %>
     <% until i == 6 %>
-        <%= link_to "#{ i }", "#{ product_ratings_path( cart.product ) }?rating=#{ i }", method: 'post' %>
+        <%= link_to ("<i class='bi-star'></i>").html_safe, "#{ product_ratings_path( cart.product ) }?rating=#{ i }", method: 'post' %>
         <% i += 1 %>
     <% end %>
 <% end %>

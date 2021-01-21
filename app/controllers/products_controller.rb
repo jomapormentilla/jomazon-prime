@@ -20,6 +20,20 @@ class ProductsController < ApplicationController
     end
 
     def new
+        if params[:user_id]
+            @user = User.find_by_id(params[:user_id])
+
+            if @user
+                if @user.id != current_user.id
+                    flash[:notice] = "Error: Access Denied."
+                    redirect_to user_path( current_user )
+                end
+            else
+                flash[:notice] = "Error: User not found."
+                redirect_to user_path( current_user )
+            end
+        end
+        
         @product = Product.new
         @product.build_department
     end
@@ -44,7 +58,7 @@ class ProductsController < ApplicationController
         @related_products = Product.where(department_id: @product.department_id).limit(10)
         @review = Review.new
         @reviews = @product.reviews.order(id: :desc)
-        @cart = current_user.cart.cart_products.not_purchased
+        @cart = current_user.cart.nil? ? [] : current_user.cart.cart_products.not_purchased
     end
 
     def edit

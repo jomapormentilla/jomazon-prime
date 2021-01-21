@@ -6,6 +6,7 @@ def start
     create_products
     get_images
     get_reviews
+    get_ratings
 end
 
 def create_store
@@ -33,17 +34,18 @@ def create_sellers
             last_name: last_name,
             email: email,
             company_name: company,
-            password: 'plokijuh',
+            password: ENV['FAKE_PASSWORD'],
             store_id: Store.first.id,
             account_type: 2
         }
 
-        User.create(data)
+        user = User.create(data)
+        Cart.create(buyer_id: user.id)
     end
 end
 
 def create_buyers
-    20.times do
+    25.times do
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
         company = Faker::Company.name
@@ -55,13 +57,14 @@ def create_buyers
             last_name: last_name,
             email: email,
             company_name: company,
-            password: 'plokijuh',
+            password: ENV['FAKE_PASSWORD'],
             store_id: Store.first.id,
             account_type: 1,
             balance: 5000.0
         }
 
-        User.create(data)
+        user = User.create(data)
+        Cart.create(buyer_id: user.id)
     end
 end
 
@@ -87,8 +90,10 @@ def get_images
     html = Nokogiri::HTML(open(url))
 
     Product.all.each.with_index do |product, index|
-        product.image = html.css(".gallery-asset__thumb")[index].attr("src")
-        product.save
+        if !html.css(".gallery-asset__thumb")[index].nil?
+            product.image = html.css(".gallery-asset__thumb")[index].attr("src")
+            product.save
+        end
     end
     
     # Another scrape for a different search is required to fill in the remaining products
@@ -96,8 +101,10 @@ def get_images
     html = Nokogiri::HTML(open(url))
     
     Product.all.where(image: nil).each.with_index do |product, index|
-        product.image = html.css(".gallery-asset__thumb")[index].attr("src")
-        product.save
+        if !html.css(".gallery-asset__thumb")[index].nil?
+            product.image = html.css(".gallery-asset__thumb")[index].attr("src")
+            product.save
+        end
     end
     
     # Scrape pictures for users
@@ -105,8 +112,10 @@ def get_images
     html = Nokogiri::HTML(open(url))
     
     User.all.each.with_index do |user, index|
-        user.image = html.css(".gallery-asset__thumb")[index].attr("src")
-        user.save
+        if !html.css(".gallery-asset__thumb")[index].nil?
+            user.image = html.css(".gallery-asset__thumb")[index].attr("src")
+            user.save
+        end
     end
 end
 
@@ -119,6 +128,18 @@ def get_reviews
         }
 
         Review.create(data)
+    end
+end
+
+def get_ratings
+    300.times do
+        data = {
+            value: rand(1..5),
+            user_id: User.where(account_type: 1).sample.id,
+            product_id: Product.all.sample.id
+        }
+        
+        Rating.create(data)
     end
 end
 

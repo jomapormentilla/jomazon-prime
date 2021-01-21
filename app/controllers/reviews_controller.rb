@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
     def create
         @review = Review.new(review_params)
+        @review.user_id = current_user.id
 
         if @review.valid?
             @review.save
@@ -15,7 +16,6 @@ class ReviewsController < ApplicationController
     def review_params
         params.require(:review).permit(
             :content,
-            :user_id,
             :product_id
         )
     end
