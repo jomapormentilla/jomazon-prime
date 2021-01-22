@@ -32,7 +32,7 @@ h1, h2, h3, h4, h5, h6, .product-price {
     font-family: 'Bebas Neue', cursive;
 }
 
-.card, .btn {
+.card, .btn, .list-group {
     border-radius: 0px;
 }
 

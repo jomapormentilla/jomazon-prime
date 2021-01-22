@@ -3,6 +3,7 @@
   <head>
     <title>Jomazon.com: Online Marketplace for Electronics, Apparel, Computers, Books, DVDs & more</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="<%= image_url('jomazon.ico') %>" />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -20,7 +21,7 @@
       <%= navigation_by_account_type %>
       <% flash.each do |type, msg| %>
         <br />
-        <div class="alert alert-info text-center"><%= msg %></div>
+        <div class="alert alert-primary text-center"><%= msg %></div>
       <% end %>
       <%= yield %>
       <br /><br /><br />

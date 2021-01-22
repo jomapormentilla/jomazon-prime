@@ -73,9 +73,9 @@ def create_products
     100.times do
         data = {
             name: Faker::Commerce.product_name,
-            description: Faker::Lorem.sentence(word_count: 25),
+            description: Faker::Movies::StarWars.quote,
             quantity: rand(1...100),
-            price: Faker::Commerce.price,
+            price: Faker::Commerce.price(range: 10...1000.0),
             store_id: Store.first.id,
             department_id: Department.all.sample.id,
             seller_id: User.where(account_type: 2).sample.id
