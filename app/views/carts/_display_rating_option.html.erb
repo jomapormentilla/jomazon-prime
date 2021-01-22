@@ -1,5 +1,5 @@
-<% if cart.product.ratings != [] %>
-    You rated this product: <strong class="rating"><%= cart.product.ratings.personal_rating(cart.product) %></strong> stars.
+<% if cart.product.ratings.any?{ |r| r.user == current_user } %>
+    You rated this product: <strong class="rating"><%= cart.product.ratings.personal_rating(cart.product, current_user) %></strong> stars.
 <% elsif cart.purchased == true %>
     Rate this product:
     <% i=1 %>

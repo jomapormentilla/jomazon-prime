@@ -3,7 +3,7 @@ class RatingsController < ApplicationController
         @product = Product.find_by_id(params[:product_id])
         
         if @product
-            @rating = Rating.find_by(product_id: @product.id)
+            @rating = Rating.find_by(product_id: @product.id, user_id: current_user.id)
 
             if !!@rating
                 flash[:notice] = "You have already rated this product."

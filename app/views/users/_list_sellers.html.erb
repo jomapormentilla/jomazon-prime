@@ -1,6 +1,6 @@
 <h3>Sellers</h3>
 <ul class="list-group">
     <% sellers.each do |seller| %>
-        <li class="list-group-item <%= active_product_item(seller) %>"><%= link_to seller.company_name, user_products_path(seller) %></li>
+        <li class="list-group-item <%= active_product_item(seller) %>"><%= link_to seller.company_name, user_path(seller) %></li>
     <% end %>
 </ul> 
