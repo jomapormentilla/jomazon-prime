@@ -1,0 +1,16 @@
+<% reviews.each do |review| %>
+    <div class="card mb-3" style="width: 100%;">
+        <div class="row g-0">
+            <div class="col-md-2">
+                <%= user_image(review.user) %>
+            </div>
+            <div class="col-md-10">
+                <div class="card-body">
+                    <h5 class="card-title"><%= link_to "#{ review.user.first_name } #{ review.user.last_name }", user_path( review.user ) %></h5>
+                    <p><small class="text-muted"><%= parse_timestamp(review.updated_at) %></small></p>
+                    <p class="card-text"><%= review.content %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

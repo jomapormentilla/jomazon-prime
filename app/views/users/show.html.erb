@@ -22,9 +22,26 @@
 
         <hr />
         <h3>Comments from Other Users</h3>
-        <% @user.comments.each do |comment| %>
-            <div class="alert alert-light" style="border-radius: 0px;">
-                <%= comment.content %>
+        <%= form_for @comment, url: user_comments_path( @user ) do |f| %>
+            <%= f.text_area :content, placeholder: 'Leave a comment...', class: 'form-control' %><br />
+            <%= f.submit 'Post Comment', class: 'btn btn-custom btn-sm' %>
+        <% end %>
+
+        <hr />
+        <% @comments.each do |comment| %>
+            <div class="card mb-3" style="width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-2">
+                        <%= user_image(comment.commenter) %>
+                    </div>
+                    <div class="col-md-10">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= link_to "#{ comment.commenter.first_name } #{ comment.commenter.last_name }", user_path( comment.commenter ) %></h5>
+                            <p><small class="text-muted"><%= parse_timestamp(comment.updated_at) %></small></p>
+                            <p class="card-text"><%= comment.content %></p>
+                        </div>
+                    </div>
+                </div>
             </div>
         <% end %>
     </div>

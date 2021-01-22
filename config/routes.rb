@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   post '/checkout' => 'carts#checkout', as: "checkout"
   get '/purchases' => 'carts#purchases'
 
-  resources :comments, only: [:create]
   resources :reviews, only: [:create]
   
   resources :products do
@@ -35,6 +34,7 @@ Rails.application.routes.draw do
   resources :users do
     resources :products, only: [:index, :new]
     resources :carts, only: [:show]
+    resources :comments, only: [:create]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
