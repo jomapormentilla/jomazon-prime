@@ -22,9 +22,11 @@
 
         <hr />
         <h3>Comments from Other Users</h3>
-        <div class="alert alert-light" style="border-radius: 0px;">
-            No comments to display.
-        </div>
+        <% @user.comments.each do |comment| %>
+            <div class="alert alert-light" style="border-radius: 0px;">
+                <%= comment.content %>
+            </div>
+        <% end %>
     </div>
 </div>
 <br />

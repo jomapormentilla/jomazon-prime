@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_many :departments, through: :products
 
     has_many :comments
+    has_many :commenter_comments, class_name: "Comment", foreign_key: "commenter_id"
+
     has_many :reviews
     has_many :ratings
 
