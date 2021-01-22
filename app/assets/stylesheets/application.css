@@ -109,3 +109,11 @@ a {
 .bi-star {
     font-size: 18px;
 }
+
+.in-stock {
+    color: green;
+}
+
+.out-of-stock {
+    color: red;
+}

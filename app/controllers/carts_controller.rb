@@ -49,9 +49,15 @@ class CartsController < ApplicationController
             flash[:notice] = "Error: Insufficient Funds."
             redirect_to user_cart_path( current_user, current_user.cart )
         else
-            current_user.cart.cart_products.each do |cart_product|
-                cart_product.purchased = true
-                cart_product.save
+            current_user.cart.cart_products.not_purchased.each do |cart_product|
+                if cart_product.purchased == false
+                    cart_product.product.quantity -= 1
+                    cart_product.purchased = true
+                    cart_product.save
+                    cart_product.product.save
+                    byebug
+                end
+
             end
             current_user.save
             redirect_to user_path( current_user )

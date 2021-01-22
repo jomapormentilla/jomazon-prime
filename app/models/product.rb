@@ -15,7 +15,7 @@ class Product < ApplicationRecord
 
     validates :description, presence: true
     validates :price, numericality: { greater_than: 0 }
-    validates :quantity, numericality: { greater_than: 0 }
+    validates :quantity, numericality: { greater_than: -1 }
 
     def department_attributes=(attributes)
         if attributes[:name] != ""

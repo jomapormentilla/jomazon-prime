@@ -6,10 +6,11 @@
                 <div class="card-body">
                     <h4 class="card-title"><%= link_to product.name, product_path(product) %></h4>
                     <h2><%= number_to_currency product.price %></h2>
-                    <p><span class="rating"><%= product.get_rating %> star<%= 's' if product.ratings.size != 1 %></span> (<%= product.ratings.size %> ratings)</p>
+                    <p>
+                        <span class="rating"><%= product.get_rating %> star<%= 's' if product.ratings.size != 1 %></span> (<%= product.ratings.size %> ratings)
+                        <br /><small class="text-muted"><%= in_stock(product) %></small>
+                    </p>
                     <%= link_to product.seller.company_name, user_path(product.seller) %>
-                    <br />
-                    <small class="text-muted"><%= in_stock(product) %></small>
                     <p class="card-text" style="font-size: 11px;"><%= product.description %></p>
                 </div>
             </div><br />

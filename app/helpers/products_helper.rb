@@ -52,14 +52,18 @@ module ProductsHelper
     end
 
     def product_edit_or_add_to_cart( product )
-        if product.seller.id == current_user.id
-            link_to 'Edit Item', edit_product_path(product), class: 'btn btn-outline-warning'
+        if product.quantity == 0
+            content_tag :div, "This item is out of stock", class: 'alert alert-danger text-center'
         else
-            if current_user.account_type == 1
-                if current_user.cart.cart_products.not_purchased.any?{|cart| cart.product == product }
-                    content_tag :div, "This item is already in your cart", class: 'alert alert-warning text-center'
-                else
-                    link_to 'Add Item to Cart', addtocart_path(product), class: 'btn btn-outline-warning'
+            if product.seller.id == current_user.id
+                link_to 'Edit Item', edit_product_path(product), class: 'btn btn-outline-warning'
+            else
+                if current_user.account_type == 1
+                    if current_user.cart.cart_products.not_purchased.any?{|cart| cart.product == product }
+                        content_tag :div, "This item is already in your cart", class: 'alert alert-warning text-center'
+                    else
+                        link_to 'Add Item to Cart', addtocart_path(product), class: 'btn btn-outline-warning'
+                    end
                 end
             end
         end
@@ -75,9 +79,9 @@ module ProductsHelper
 
     def in_stock( product )
         if product.quantity > 0
-            "In Stock"
+            content_tag :span, "In Stock", class: 'in-stock'
         else
-            "Out of Stock"
+            content_tag :span, "Out of Stock", class: 'out-of-stock'
         end
     end
 end
