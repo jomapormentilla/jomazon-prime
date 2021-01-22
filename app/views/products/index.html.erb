@@ -9,6 +9,12 @@
         <%= list_users_or_departments %>
     </div>
     <div class="col-md-10">
+        <div class="float-end">
+            Sort By: 
+            <%= link_to 'Name', "#{ current_path }?sort=name" %> - 
+            <%= link_to 'Price Low', "#{ current_path }?sort=price-asc" %> - 
+            <%= link_to 'Price High', "#{ current_path }?sort=price-desc" %>
+        </div>
         <h1><%= products_index_title %></h1>
 
         <%= render partial: 'display_products', locals: { products: @products } %>

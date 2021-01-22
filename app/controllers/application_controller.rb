@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in, :is_a_seller?, :redirect_if_signup_incomplete
+    helper_method :current_user, :is_logged_in?, :redirect_if_not_logged_in, :redirect_if_not_seller, :is_current_user?, :redirect_if_already_logged_in, :is_a_seller?, :redirect_if_signup_incomplete, :current_path
     
     private
 
@@ -34,5 +34,9 @@ class ApplicationController < ActionController::Base
         if is_logged_in?
             redirect_to account_type_path if current_user.account_type == nil
         end
+    end
+
+    def current_path
+        @current_path = request.env["PATH_INFO"]
     end
 end

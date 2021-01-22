@@ -55,7 +55,6 @@ class CartsController < ApplicationController
                     cart_product.purchased = true
                     cart_product.save
                     cart_product.product.save
-                    byebug
                 end
 
             end
