@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
     has_many :reviews
     has_many :ratings
+    has_many :actions
 
     has_one :cart, foreign_key: "buyer_id"
 

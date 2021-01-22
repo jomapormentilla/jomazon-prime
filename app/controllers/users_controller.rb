@@ -26,6 +26,7 @@ class UsersController < ApplicationController
         
         if @user.valid?
             @user.balance = 5000.0 if @user.account_type == 1
+            @user.balance = 0 if @user.account_type == 2
             @user.save
             @cart = Cart.create(buyer_id: @user.id)
             byebug

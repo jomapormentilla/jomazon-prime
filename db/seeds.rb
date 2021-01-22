@@ -37,7 +37,8 @@ def create_sellers
             company_name: company,
             password: ENV['FAKE_PASSWORD'],
             store_id: Store.first.id,
-            account_type: 2
+            account_type: 2,
+            balance: 0
         }
 
         user = User.create(data)
@@ -70,7 +71,7 @@ def create_buyers
 end
 
 def create_products
-    100.times do
+    300.times do
         data = {
             name: Faker::Commerce.product_name,
             description: Faker::Movies::StarWars.quote,

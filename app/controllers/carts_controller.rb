@@ -51,13 +51,31 @@ class CartsController < ApplicationController
         else
             current_user.cart.cart_products.not_purchased.each do |cart_product|
                 if cart_product.purchased == false
+                    cart_product.product.seller.balance += cart_product.product.price
+                    cart_product.product.seller.save
+                    
                     cart_product.product.quantity -= 1
+                    cart_product.product.save
+                    
                     cart_product.purchased = true
                     cart_product.save
-                    cart_product.product.save
                 end
 
+                data = {
+                    content: "#{ current_user.first_name } #{ current_user.last_name } purchased #{ cart_product.product.name }",
+                    user_id: cart_product.product.seller.id,
+                    price: cart_product.product.price
+                }
+                cart_product.product.seller.actions << Action.create(data)
+
+                data = {
+                    content: "You purchased #{ cart_product.product.name }",
+                    user_id: current_user.id,
+                    price: cart_product.product.price
+                }
+                current_user.actions << Action.create(data)
             end
+
             current_user.save
             redirect_to user_path( current_user )
         end

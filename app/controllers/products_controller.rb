@@ -25,7 +25,11 @@ class ProductsController < ApplicationController
                 @products = @products.order(price: :asc)
             elsif params[:sort] == "price-desc"
                 @products = @products.order(price: :desc)
+            elsif params[:sort] == "quantity"
+                @products = @products.order(quantity: :asc)
             end
+        else
+            @products = @products.order(:name)
         end
     end
 
