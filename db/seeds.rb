@@ -7,6 +7,7 @@ def start
     get_images
     get_reviews
     get_ratings
+    get_comments
 end
 
 def create_store
@@ -22,7 +23,7 @@ def create_departments
 end
 
 def create_sellers
-    25.times do
+    50.times do
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
         company = Faker::Company.name
@@ -45,7 +46,7 @@ def create_sellers
 end
 
 def create_buyers
-    25.times do
+    50.times do
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
         company = Faker::Company.name
@@ -77,7 +78,7 @@ def create_products
             price: Faker::Commerce.price,
             store_id: Store.first.id,
             department_id: Department.all.sample.id,
-            seller_id: User.where("account_type = ?", 2).sample.id
+            seller_id: User.where(account_type: 2).sample.id
         }
 
         Product.create(data)
@@ -122,7 +123,7 @@ end
 def get_reviews
     100.times do
         data = {
-            content: Faker::Lorem.sentence(word_count: 25),
+            content: Faker::TvShows::MichaelScott.quote,
             user_id: User.where(account_type: 1).sample.id,
             product_id: Product.all.sample.id
         }
@@ -140,6 +141,18 @@ def get_ratings
         }
         
         Rating.create(data)
+    end
+end
+
+def get_comments
+    100.times do
+        data = {
+            content: Faker::TvShows::RickAndMorty.quote,
+            user_id: User.all.sample.id,
+            commenter_id: User.all.sample.id
+        }
+
+        Comment.create(data)
     end
 end
 
