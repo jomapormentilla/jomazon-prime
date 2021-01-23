@@ -1,11 +1,10 @@
 <br />
 <div class="row">
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
     <div class="col-md-2">
         <%= render partial: 'users/sidebar_profile_image' %>
         <%= render partial: 'users/sidebar_account_settings' if @user.id == current_user.id %>
         <%= render partial: 'users/sidebar_wallet' if @user.id == current_user.id %>
-        <%= render partial: 'products/display_cart' if @user.id == current_user.id && current_user.account_type == 1 %>
 
         <div style="text-align: right;">
             <%= render partial: 'list_sellers', locals: { sellers: @sellers } if @user.account_type == 2 %>
@@ -15,23 +14,12 @@
     <div class="col-md-6">
         <h1><%= @user.company_name %></h1>
         <span><i class="bi-envelope"></i> - <%= @user.email %></span>
-        <hr />
 
         <%= render partial: 'users/display_seller_products', locals: { user: @user } if @user.account_type == 2 %>
 
         <%= render partial: 'carts/display_recent_purchases', locals: { cart_products: @purchased_items } if @user.account_type == 1 %>
 
-        <hr />
-        <h3>History</h3>
-        <table class="table table-striped table-bordered table-condensed">
-            <% @user.actions.order(id: :desc).each do |action| %>
-            <tr>
-                <td><%= action.created_at.strftime("%m/%d/%Y") %></td>
-                <td><%= action.content %></td>
-                <td><%= number_to_currency action.price %></td>
-            </tr>
-            <% end %>
-        </table>
+        <%= render partial: 'display_history', locals: { user: current_user } if @user.id == current_user.id %>
 
         <hr />
         <h3>Comments from Other Users</h3>
@@ -40,23 +28,11 @@
             <%= f.submit 'Post Comment', class: 'btn btn-custom btn-sm' %>
         <% end %>
 
-        <hr />
-        <% @comments.each do |comment| %>
-            <div class="card mb-3" style="width: 100%;">
-                <div class="row g-0">
-                    <div class="col-md-2">
-                        <%= user_image(comment.commenter) %>
-                    </div>
-                    <div class="col-md-10">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= link_to "#{ comment.commenter.first_name } #{ comment.commenter.last_name }", user_path( comment.commenter ) %></h5>
-                            <p><small class="text-muted"><%= parse_timestamp(comment.updated_at) %></small></p>
-                            <p class="card-text"><%= comment.content %></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% end %>
+        <%= render partial: 'display_comments', locals: { comments: @comments } %>
+    </div>
+
+    <div class="col-md-2">
+        <%= render partial: 'products/display_cart' if @user.id == current_user.id && current_user.account_type == 1 %>
     </div>
 </div>
 <br />

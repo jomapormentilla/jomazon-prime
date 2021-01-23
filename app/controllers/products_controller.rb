@@ -69,7 +69,7 @@ class ProductsController < ApplicationController
     end
 
     def show
-        @related_products = Product.where(department_id: @product.department_id).limit(10)
+        @related_products = Product.related_to(@product)
         @review = Review.new
         @reviews = @product.reviews.order(id: :desc)
         @cart = current_user.cart.nil? ? [] : current_user.cart.cart_products.not_purchased

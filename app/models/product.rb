@@ -17,6 +17,8 @@ class Product < ApplicationRecord
     validates :price, numericality: { greater_than: 0 }
     validates :quantity, numericality: { greater_than: -1 }
 
+    scope :related_to, ->( product ){ where(department_id: product.department_id).limit(10) }
+
     def department_attributes=(attributes)
         if attributes[:name] != ""
             self.department = Department.find_or_create_by(name: attributes[:name], store_id: attributes[:store_id])

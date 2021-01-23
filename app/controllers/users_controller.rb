@@ -29,7 +29,7 @@ class UsersController < ApplicationController
             @user.balance = 0 if @user.account_type == 2
             @user.save
             @cart = Cart.create(buyer_id: @user.id)
-            byebug
+
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else

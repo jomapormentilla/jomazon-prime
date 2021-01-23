@@ -71,11 +71,11 @@ def create_buyers
 end
 
 def create_products
-    300.times do
+    120.times do
         data = {
             name: Faker::Commerce.product_name,
             description: Faker::Movies::StarWars.quote,
-            quantity: rand(1...100),
+            quantity: rand(0...50),
             price: Faker::Commerce.price(range: 10...1000.0),
             store_id: Store.first.id,
             department_id: Department.all.sample.id,
@@ -119,10 +119,21 @@ def get_images
             user.save
         end
     end
+
+    # Scrape pictures for users
+    url = "https://www.gettyimages.co.uk/photos/job-person?family=creative&license=rf&numberofpeople=one&phrase=job%20person&sort=mostpopular#license"  
+    html = Nokogiri::HTML(open(url))
+    
+    User.where(image: nil).each.with_index do |user, index|
+        if !html.css(".gallery-asset__thumb")[index].nil?
+            user.image = html.css(".gallery-asset__thumb")[index].attr("src")
+            user.save
+        end
+    end
 end
 
 def get_reviews
-    100.times do
+    200.times do
         data = {
             content: Faker::TvShows::MichaelScott.quote,
             user_id: User.where(account_type: 1).sample.id,
@@ -134,7 +145,7 @@ def get_reviews
 end
 
 def get_ratings
-    300.times do
+    1000.times do
         data = {
             value: rand(1..5),
             user_id: User.where(account_type: 1).sample.id,
@@ -146,7 +157,7 @@ def get_ratings
 end
 
 def get_comments
-    100.times do
+    200.times do
         data = {
             content: Faker::TvShows::RickAndMorty.quote,
             user_id: User.all.sample.id,

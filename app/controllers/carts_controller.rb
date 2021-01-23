@@ -79,6 +79,5 @@ class CartsController < ApplicationController
             current_user.save
             redirect_to user_path( current_user )
         end
-        
     end
 end

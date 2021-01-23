@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
 
     def home
         @departments = Department.all.includes(products: [:seller, :ratings])
-        @sellers = User.all.where(account_type: 2).order(:company_name)
+        @sellers = User.is_a_seller.order(:company_name)
     end
 
     def search

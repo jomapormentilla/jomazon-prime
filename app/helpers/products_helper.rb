@@ -84,4 +84,12 @@ module ProductsHelper
             content_tag :span, "Out of Stock", class: 'out-of-stock'
         end
     end
+
+    def display_reviews
+        if @reviews.empty?
+            content_tag :div, "This product does not have any reviews.", class: 'alert alert-dark text-center'
+        else
+            render partial: 'products/display_reviews', locals: { reviews: @reviews }
+        end
+    end
 end
