@@ -4,7 +4,22 @@ def start
     create_sellers
     create_buyers
     create_products
-    get_images
+    get_product_images("Books",         "https://www.gettyimages.co.uk/photos/book?family=creative&license=rf&mediatype=photography&phrase=book&sort=best#license")
+    get_product_images("Clothing",      "https://www.gettyimages.co.uk/photos/clothes?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=clothes&sort=best#license")
+    get_product_images("Cell Phones",   "https://www.gettyimages.co.uk/photos/cell-phone?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=cell%20phone&sort=best#license")
+    get_product_images("Computers",     "https://www.gettyimages.co.uk/photos/computer?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=computer&sort=best#license")
+    get_product_images("Education",     "https://www.gettyimages.co.uk/photos/education?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=education&sort=best#license")
+    get_product_images("Electronics",   "https://www.gettyimages.co.uk/photos/electronics?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=electronics&sort=best#license")
+    get_product_images("Home",          "https://www.gettyimages.co.uk/photos/furniture?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=furniture&sort=best#license")
+    get_product_images("Movies",        "https://www.gettyimages.co.uk/photos/theatre?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=theatre&sort=best#license")
+    get_product_images("Music",         "https://www.gettyimages.co.uk/photos/music?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=music&sort=best#license")
+    get_product_images("Office",        "https://www.gettyimages.co.uk/photos/office-supply?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=office%20supply&sort=best#license")
+    get_product_images("Pets",          "https://www.gettyimages.co.uk/photos/dog-and-cat?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=dog%20and%20cat&sort=best#license")
+    get_product_images("Software",      "https://www.gettyimages.co.uk/photos/software?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=software&sort=best#license")
+    get_product_images("Toys",          "https://www.gettyimages.co.uk/photos/toys?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=toys&sort=best#license")
+    get_product_images("Video Games",   "https://www.gettyimages.co.uk/photos/video-games?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=video%20games&sort=best#license")
+    get_user_images("https://www.gettyimages.co.uk/photos/interview-person?family=creative&license=rf&numberofpeople=one&phrase=interview%20person&sort=mostpopular#license")
+    get_user_images("https://www.gettyimages.co.uk/photos/job-person?family=creative&license=rf&numberofpeople=one&phrase=job%20person&sort=mostpopular#license")
     get_reviews
     get_ratings
     get_comments
@@ -86,42 +101,18 @@ def create_products
     end
 end
 
-def get_images
-    # Each Getty Images Search generates 60 results
-    url = "https://www.gettyimages.com/photos/clothing?compositions=stilllife&family=creative&license=rf&phrase=clothing&sort=mostpopular#license"
+def get_product_images( department, url )
     html = Nokogiri::HTML(open(url))
 
-    Product.all.each.with_index do |product, index|
+    Department.where(name: department).first.products.where(image: nil).each.with_index do |product, index|
         if !html.css(".gallery-asset__thumb")[index].nil?
             product.image = html.css(".gallery-asset__thumb")[index].attr("src")
             product.save
         end
     end
-    
-    # Another scrape for a different search is required to fill in the remaining products
-    url = "https://www.gettyimages.com/photos/electronics?compositions=stilllife&family=creative&license=rf&phrase=electronics&sort=mostpopular#license"  
-    html = Nokogiri::HTML(open(url))
-    
-    Product.all.where(image: nil).each.with_index do |product, index|
-        if !html.css(".gallery-asset__thumb")[index].nil?
-            product.image = html.css(".gallery-asset__thumb")[index].attr("src")
-            product.save
-        end
-    end
-    
-    # Scrape pictures for users
-    url = "https://www.gettyimages.co.uk/photos/interview-person?family=creative&license=rf&numberofpeople=one&phrase=interview%20person&sort=mostpopular#license"  
-    html = Nokogiri::HTML(open(url))
-    
-    User.all.each.with_index do |user, index|
-        if !html.css(".gallery-asset__thumb")[index].nil?
-            user.image = html.css(".gallery-asset__thumb")[index].attr("src")
-            user.save
-        end
-    end
+end
 
-    # Scrape pictures for users
-    url = "https://www.gettyimages.co.uk/photos/job-person?family=creative&license=rf&numberofpeople=one&phrase=job%20person&sort=mostpopular#license"  
+def get_user_images( url )
     html = Nokogiri::HTML(open(url))
     
     User.where(image: nil).each.with_index do |user, index|

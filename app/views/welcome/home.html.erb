@@ -12,7 +12,7 @@
             <% @departments.each do |department| %>
                 <% if !department.products.empty? %>
                     <h2>>> <%= link_to department.name.capitalize, department_products_path(department) %></h2><hr />
-                    <%= render partial: 'products/display_products', locals: { products: department.products } %>
+                    <%= render partial: 'products/display_products', locals: { products: department.products.with_attached_product_image.includes(:ratings, :seller, :department) } %>
                 <% end %>
             <% end %>
         </div>

@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
     end
 
     def search
+        redirect_if_not_logged_in
         if !params[:q]
             redirect_to root_path
         end
