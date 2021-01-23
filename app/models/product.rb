@@ -18,6 +18,7 @@ class Product < ApplicationRecord
     validates :quantity, numericality: { greater_than: -1 }
 
     scope :related_to, ->( product ){ where(department_id: product.department_id).limit(10) }
+    scope :most_expensive, -> { order(price: :desc).limit(10) }
 
     def department_attributes=(attributes)
         if attributes[:name] != ""
@@ -28,9 +29,7 @@ class Product < ApplicationRecord
 
     def get_rating
         total = 0
-        self.ratings.each do |r|
-            total += r.value
-        end
+        self.ratings.each{ |r| total += r.value }
 
         if total == 0
             "0.0"
