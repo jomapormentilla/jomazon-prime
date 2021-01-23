@@ -44,10 +44,14 @@ module ProductsHelper
     end
 
     def product_image( product )
-        if product.image != nil
-            link_to image_tag(image_url(product.image), class: 'card-img-top product-image-height'), product_path(product)
+        if product.product_image.attached?
+            link_to image_tag(url_for(product.product_image), class: 'card-img-top product-image-height'), product_path(product)
         else
-            link_to image_tag(image_url('placeholder-image.png'), class: 'card-img-top product-image-height'), product_path(product)
+            if product.image != nil
+                    link_to image_tag(image_url(product.image), class: 'card-img-top product-image-height'), product_path(product)
+            else
+                link_to image_tag(image_url('placeholder-image.png'), class: 'card-img-top product-image-height'), product_path(product)
+            end
         end
     end
 

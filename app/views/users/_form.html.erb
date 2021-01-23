@@ -13,8 +13,8 @@
     <%= f.text_field :company_name, class: 'form-control' %><br />
 
     <% if !current_user.nil? %>
-        <%= f.label :image, 'Profile Image', class: 'form-label' %>
-        <%= f.file_field :image, class: 'form-control' %><br />
+        <%= f.label :profile_image, 'Profile Image', class: 'form-label' %>
+        <%= f.file_field :profile_image, class: 'form-control' %><br />
     <% end %>
     
     <%= render_account_type_for_form(f) %>

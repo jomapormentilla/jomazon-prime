@@ -95,6 +95,7 @@ class ProductsController < ApplicationController
             :price,
             :quantity,
             :department_id,
+            :product_image,
             department_attributes: [:name, :store_id]
         )
     end
