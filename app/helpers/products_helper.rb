@@ -77,7 +77,7 @@ module ProductsHelper
         if current_user.account_type == 1
             render partial: 'products/display_cart'
         else
-            content_tag :div, "Hi, #{ current_user.first_name }! You'll need to create a Buyer account to purchase this item.", class: 'alert alert-warning text-center'
+            content_tag :div, "Hi, #{ current_user.first_name }! You'll need to create a Buyer account to purchase this item.", class: 'alert alert-dark text-center'
         end
     end
 

@@ -5,10 +5,6 @@
         <%= render partial: 'users/sidebar_profile_image' %>
         <%= render partial: 'users/sidebar_account_settings' if @user.id == current_user.id %>
         <%= render partial: 'users/sidebar_wallet' if @user.id == current_user.id %>
-
-        <div class="text-end">
-            <%= render partial: 'list_sellers', locals: { sellers: @sellers } if @user.account_type == 2 %>
-        </div>
     </div>
 
     <div class="col-md-6">
@@ -19,7 +15,7 @@
 
         <%= render partial: 'carts/display_recent_purchases', locals: { cart_products: @purchased_items } if @user.account_type == 1 %>
 
-        <%= render partial: 'display_history', locals: { user: current_user } if @user.id == current_user.id %>
+        <%= render partial: 'users/display_history', locals: { user: current_user } if @user.id == current_user.id %>
 
         <hr />
         <h3>Comments from Other Users</h3>
@@ -33,6 +29,7 @@
 
     <div class="col-md-2">
         <%= render partial: 'products/display_cart' if @user.id == current_user.id && current_user.account_type == 1 %>
+        <%= render partial: 'list_sellers', locals: { sellers: @sellers } if @user.account_type == 2 %>
     </div>
 </div>
 <br />

@@ -13,9 +13,10 @@ class WelcomeController < ApplicationController
             redirect_to root_path
         end
 
-        @products = Product.where("name LIKE ?", "%#{ params[:q] }%").includes(:ratings, :seller, :department)
+        @products = Product.where("name LIKE ?", "%#{ params[:q] }%").includes(:ratings, :seller, :department).with_attached_product_image
         @users = User.where("first_name LIKE ?", "%#{ params[:q] }%")
                     .or(User.where("last_name LIKE ?", "%#{ params[:q] }%"))
                     .or(User.where("company_name LIKE ?", "%#{ params[:q] }%"))
+                    .with_attached_profile_image
     end
 end

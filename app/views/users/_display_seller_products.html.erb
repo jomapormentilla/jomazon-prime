@@ -1,5 +1,7 @@
 <hr />
 <h3>Products</h3>
-<div class="row">
+<% if @user.products.empty? %>
+    <div class="alert alert-dark text-center">This Seller does not have any products.</div>
+<% else %>
     <%= render partial: 'products/display_products_slim', locals: { products: @user.products } %>
-</div>
+<% end %>
