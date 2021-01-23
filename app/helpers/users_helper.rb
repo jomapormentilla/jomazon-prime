@@ -17,7 +17,7 @@ module UsersHelper
 
     def user_image( user )
         if user.image != nil
-            image_tag(image_url(user.image), class: 'card-img-top product-image-height')
+            image_tag(url_for(user.image), class: 'card-img-top product-image-height')
         else
             image_tag(image_url('placeholder-profile.jpg'), class: 'card-img-top product-image-height')
         end

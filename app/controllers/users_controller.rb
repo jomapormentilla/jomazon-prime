@@ -72,7 +72,8 @@ class UsersController < ApplicationController
             :last_name,
             :company_name,
             :account_type,
-            :password_confirmation
+            :password_confirmation,
+            :image
         )
     end
 

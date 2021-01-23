@@ -13,6 +13,8 @@ class User < ApplicationRecord
 
     has_one :cart, foreign_key: "buyer_id"
 
+    has_one_attached :image
+
     has_secure_password
 
     validates :email, presence: true, uniqueness: true
