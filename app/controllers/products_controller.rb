@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
     before_action :assign_store_and_departments,    only: [:index, :new, :create, :edit]
     before_action :redirect_if_not_seller,          only: [:new, :create, :edit]
     before_action :redirect_if_not_logged_in,       only: [:show]
-    before_action :find_product,                    only: [:show, :edit, :update]
+    before_action :find_product,                    only: [:show, :edit, :update, :destroy]
+    before_action :redirect_if_not_product_owner,   only: [:edit, :destroy]
 
     def index
         if params[:user_id]
@@ -21,6 +22,8 @@ class ProductsController < ApplicationController
         if params[:sort]
             if params[:sort] == "name"
                 @products = @products.order(:name)
+            elsif params[:sort] == "recent"
+                @products = @products.order(id: :desc)
             elsif params[:sort] == "price-asc"
                 @products = @products.order(price: :asc)
             elsif params[:sort] == "price-desc"
@@ -31,6 +34,8 @@ class ProductsController < ApplicationController
         else
             @products = @products.order(:name)
         end
+
+        @products = @products.with_attached_product_image
     end
 
     def new
@@ -86,6 +91,12 @@ class ProductsController < ApplicationController
         end
     end
 
+    def destroy
+        @product.delete
+        flash[:notice] = "Product successfully deleted."
+        redirect_to user_path( current_user )
+    end
+
     private
 
     def product_params
@@ -107,5 +118,12 @@ class ProductsController < ApplicationController
 
     def find_product
         @product = Product.find(params[:id])
+    end
+
+    def redirect_if_not_product_owner
+        if @product.seller.id != current_user.id
+            flash[:notice] = "Error: You do not own this product."
+            redirect_to user_path( current_user )
+        end
     end
 end

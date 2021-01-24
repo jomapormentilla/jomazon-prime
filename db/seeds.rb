@@ -4,6 +4,7 @@ def start
     create_sellers
     create_buyers
     create_products
+    
     get_product_images("Books",         "https://www.gettyimages.co.uk/photos/book?family=creative&license=rf&mediatype=photography&phrase=book&sort=best#license")
     get_product_images("Clothing",      "https://www.gettyimages.co.uk/photos/clothes?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=clothes&sort=best#license")
     get_product_images("Cell Phones",   "https://www.gettyimages.co.uk/photos/cell-phone?compositions=stilllife&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=cell%20phone&sort=best#license")
@@ -18,6 +19,7 @@ def start
     get_product_images("Software",      "https://www.gettyimages.co.uk/photos/software?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=software&sort=best#license")
     get_product_images("Toys",          "https://www.gettyimages.co.uk/photos/toys?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=toys&sort=best#license")
     get_product_images("Video Games",   "https://www.gettyimages.co.uk/photos/video-games?compositions=closeup,portrait&family=creative&license=rf&mediatype=photography&numberofpeople=none&phrase=video%20games&sort=best#license")
+    
     get_user_images("https://www.gettyimages.co.uk/photos/interview-person?family=creative&license=rf&numberofpeople=one&phrase=interview%20person&sort=mostpopular#license")
     get_user_images("https://www.gettyimages.co.uk/photos/job-person?family=creative&license=rf&numberofpeople=one&phrase=job%20person&sort=mostpopular#license")
     get_reviews

@@ -3,6 +3,6 @@
         <%= link_to 'Sellers', sellers_path %>
         <%= link_to 'All Products', products_path %>
         <%= link_to 'Your Purchases', purchases_path %>
-        <%= link_to "Cart (#{ current_user.cart_size })", user_cart_path(current_user.id, current_user.cart.id) if !current_user.cart.nil? %>
+        <%= link_to ("<i class='bi-cart4' style='font-size: 20px;'></i> (#{ current_user.cart_size })").html_safe, user_cart_path(current_user.id, current_user.cart.id) if !current_user.cart.nil? %>
     </div>
 </div>

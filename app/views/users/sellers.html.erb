@@ -4,7 +4,13 @@
     <div class="col-md-6">
         <h1>All Sellers</h1>
         <hr />
-        
+        <%= form_tag sellers_path, method: 'get' do %>
+            <div class="input-group mb-3">
+                <%= text_field_tag :q, nil, placeholder: "Search Sellers...", class: 'form-control' %>
+                <%= submit_tag 'Search', class: 'btn btn-secondary' %>
+            </div>
+        <% end %>
+
         <% @sellers.each do |seller| %>
             <%= render partial: 'display_seller_card', locals: { seller: seller } %>
         <% end %>

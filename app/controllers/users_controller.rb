@@ -4,12 +4,14 @@ class UsersController < ApplicationController
     before_action :redirect_if_not_logged_in,       only: [:show]
     before_action :redirect_if_signup_incomplete,   only: [:show]
 
-    def index
-        @sellers = User.all.order(:first_name)
-    end
-
     def sellers
         @sellers = User.is_a_seller.order(:first_name)
+        
+        if params[:q]
+            @sellers = @sellers.where("first_name LIKE ?", "%#{ params[:q] }%")
+            .or(User.where("last_name LIKE ?", "%#{ params[:q] }%"))
+            .or(User.where("company_name LIKE ?", "%#{ params[:q] }%"))
+        end
     end
 
     def new

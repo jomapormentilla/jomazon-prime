@@ -12,9 +12,7 @@
         <span><i class="bi-envelope"></i> - <%= @user.email %></span>
 
         <%= render partial: 'users/display_seller_products', locals: { user: @user } if @user.account_type == 2 %>
-
         <%= render partial: 'carts/display_recent_purchases', locals: { cart_products: @purchased_items } if @user.account_type == 1 %>
-
         <%= render partial: 'users/display_history', locals: { user: current_user } if @user.id == current_user.id %>
 
         <hr />
@@ -23,7 +21,6 @@
             <%= f.text_area :content, placeholder: 'Leave a comment...', class: 'form-control' %><br />
             <%= f.submit 'Post Comment', class: 'btn btn-custom btn-sm' %>
         <% end %>
-
         <%= render partial: 'display_comments', locals: { comments: @comments } %>
     </div>
 
