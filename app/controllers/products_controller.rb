@@ -74,7 +74,7 @@ class ProductsController < ApplicationController
     end
 
     def show
-        @related_products = Product.related_to(@product)
+        @related_products = Product.related_to(@product).with_attached_product_image
         @review = Review.new
         @reviews = @product.reviews.order(id: :desc)
         @cart = current_user.cart.nil? ? [] : current_user.cart.cart_products.not_purchased

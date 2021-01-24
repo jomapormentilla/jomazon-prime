@@ -10,15 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_23_141721) do
+ActiveRecord::Schema.define(version: 2021_01_24_010445) do
 
   create_table "actions", force: :cascade do |t|
-    t.string "content"
     t.decimal "price", precision: 10, scale: 2
-    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_actions_on_user_id"
+    t.integer "product_id"
+    t.integer "seller_id"
+    t.integer "buyer_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|

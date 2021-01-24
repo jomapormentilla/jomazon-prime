@@ -9,7 +9,8 @@ class User < ApplicationRecord
 
     has_many :reviews
     has_many :ratings
-    has_many :actions
+    has_many :seller_actions, class_name: "Action", foreign_key: "seller_id"
+    has_many :buyer_actions, class_name: "Action", foreign_key: "buyer_id"
 
     has_one :cart, foreign_key: "buyer_id"
 
@@ -36,5 +37,9 @@ class User < ApplicationRecord
 
     def cart_size
         self.cart.cart_products.not_purchased.size
+    end
+
+    def full_name
+        "#{ self.first_name } #{ self.last_name }"
     end
 end

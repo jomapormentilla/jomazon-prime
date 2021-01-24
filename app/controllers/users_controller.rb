@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
     def new
         if params[:test]
-            byebug
+
         end
 
         @user = User.new
@@ -43,10 +43,15 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         @sellers = User.is_a_seller.order(:company_name)
         @products = @user.products.limit(10)
+        
         @cart = current_user.cart.nil? ? [] : current_user.cart.cart_products.not_purchased
         @purchased_items = current_user.cart.nil? ? [] : current_user.cart.cart_products.purchased.order(id: :desc).limit(10)
+        
         @comment = Comment.new
         @comments = @user.comments.order(id: :desc)
+
+        @actions = @user.seller_actions if @user.account_type == 2
+        @actions = @user.buyer_actions if @user.account_type == 1
     end
 
     def edit

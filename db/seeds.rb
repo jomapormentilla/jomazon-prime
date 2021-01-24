@@ -44,8 +44,9 @@ def create_sellers
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
         company = Faker::Company.name
+        _company = company.gsub(" ","").gsub(",","")
 
-        email = "#{ first_name.downcase }.#{ last_name.downcase }@#{ company.downcase }.com"
+        email = "#{ first_name.downcase }.#{ last_name.downcase }@#{ _company.downcase }.com"
 
         data = {
             first_name: first_name,
@@ -68,8 +69,9 @@ def create_buyers
         first_name = Faker::Name.first_name
         last_name = Faker::Name.last_name
         company = Faker::Company.name
+        _company = company.gsub(" ","").gsub(",","")
 
-        email = "#{ first_name.downcase }.#{ last_name.downcase }@#{ company.downcase }.com"
+        email = "#{ first_name.downcase }.#{ last_name.downcase }@#{ _company.downcase }.com"
 
         data = {
             first_name: first_name,
@@ -88,7 +90,7 @@ def create_buyers
 end
 
 def create_products
-    120.times do
+    300.times do
         data = {
             name: Faker::Commerce.product_name,
             description: Faker::Movies::StarWars.quote,
@@ -138,7 +140,7 @@ def get_reviews
 end
 
 def get_ratings
-    1000.times do
+    1500.times do
         data = {
             value: rand(1..5),
             user_id: User.where(account_type: 1).sample.id,

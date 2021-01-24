@@ -62,18 +62,13 @@ class CartsController < ApplicationController
                 end
 
                 data = {
-                    content: "#{ current_user.first_name } #{ current_user.last_name } purchased #{ cart_product.product.name }",
-                    user_id: cart_product.product.seller.id,
+                    buyer_id: current_user.id,
+                    seller_id: cart_product.product.seller_id,
+                    product_id: cart_product.product_id,
                     price: cart_product.product.price
                 }
-                cart_product.product.seller.actions << Action.create(data)
 
-                data = {
-                    content: "You purchased #{ cart_product.product.name }",
-                    user_id: current_user.id,
-                    price: cart_product.product.price
-                }
-                current_user.actions << Action.create(data)
+                action = Action.create(data)
             end
 
             current_user.save
