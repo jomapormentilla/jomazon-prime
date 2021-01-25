@@ -21,9 +21,9 @@ rails db:seed
 ```
 
 ## Usage
-This application uses 'shotgun' to run a local server. Type the following in your terminal:
+This application uses Rails to run a local server. Type the following in your terminal:
 ```ruby
-shotgun
+rails s
 ```
 With the server running, open up your favorite web browser and navigate to the following URL:
 ```ruby
