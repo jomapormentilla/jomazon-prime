@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
     before_action :redirect_if_signup_incomplete
 
     def home
-        @departments = Department.all.includes(products: [:seller, :ratings])
+        @departments = Department.all.includes(:sellers, :products, products: [:seller, :ratings])
         @sellers = User.is_a_seller.order(:company_name)
     end
 

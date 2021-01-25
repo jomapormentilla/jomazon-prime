@@ -6,6 +6,9 @@
         <%= render partial: 'layouts/errors', locals: { object: @product } %>
 
         <%= render partial: 'form', locals: { product: @product, departments: @departments, store: @store, user: current_user } %>
+        
+        <br />
+        <%= link_to 'Cancel', user_path( current_user ), class: 'btn btn-secondary' %>
         <br />
     </div>
 </div>
