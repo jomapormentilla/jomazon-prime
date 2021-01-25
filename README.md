@@ -15,8 +15,9 @@ Clone this repository into your developer environment, then install the required
 ```ruby
 bundle install
 ```
-In order to populate the database with information, you'll need to run the seed file using this command:
+In order to populate the database with information, you'll need to first run the migration files, then seed the database using the following commands:
 ```ruby
+rails db:migrate
 rails db:seed
 ```
 
