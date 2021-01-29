@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     before_action :redirect_if_signup_incomplete,   only: [:show]
 
     def sellers
-        @sellers = User.is_a_seller.order(:first_name)
+        @sellers = User.is_a_seller.with_attached_profile_image.alpha_order
         
         if params[:q]
             @sellers = @sellers.where("first_name LIKE ?", "%#{ params[:q] }%")

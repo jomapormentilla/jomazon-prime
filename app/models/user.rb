@@ -25,6 +25,8 @@ class User < ApplicationRecord
 
     scope :is_a_seller, -> { where(account_type: 2) }
     scope :is_a_buyer, -> { where(account_type: 1) }
+    scope :most_products, -> { joins(:products).group(:seller_id).order("COUNT(seller_id) DESC") }
+    scope :alpha_order, -> { includes(:products).order(:first_name) }
 
     def slug
         string = "#{ self.first_name } #{ self.last_name }"

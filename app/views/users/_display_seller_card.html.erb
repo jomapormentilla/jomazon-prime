@@ -8,8 +8,9 @@
                 <h3 class="card-title"><%= link_to "#{ seller.first_name } #{ seller.last_name }", user_path(seller) %></h3>
                 <p class="card-text">
                     <i class="bi-person"></i> &nbsp; <%= link_to seller.company_name, user_path( seller ) %><br />
-                    <span><i class="bi-envelope"></i> &nbsp; <%= seller.email %></span>
-                </p>
+                    <span><i class="bi-envelope"></i> &nbsp; <%= seller.email %></span><br />
+                    </p>
+                <span>Num Products: <%= seller.products.size %></span>
                 <p class="card-text"><small class="text-muted">Member Since: <%= parse_timestamp( seller.created_at ) %></small></p>
             </div>
         </div>
