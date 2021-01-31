@@ -15,10 +15,6 @@ class UsersController < ApplicationController
     end
 
     def new
-        if params[:test]
-
-        end
-
         @user = User.new
     end
 

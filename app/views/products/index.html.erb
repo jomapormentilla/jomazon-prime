@@ -10,11 +10,17 @@
     </div>
     <div class="col-md-10">
         <div class="float-end">
-            Sort By: 
-            <%= link_to 'Name', "#{ current_path }?sort=name" %> - 
-            <%= link_to 'Most Recent', "#{ current_path }?sort=recent" %> - 
-            <%= link_to 'Price Low', "#{ current_path }?sort=price-asc" %> - 
-            <%= link_to 'Price High', "#{ current_path }?sort=price-desc" %>
+            <%= form_tag current_path, method: 'get' do %>
+                <div class="input-group mb-3">
+                    <%= select_tag :sort, raw("
+                        <option value='name'>Name</option>
+                        <option value='recent'>Most Recent</option>
+                        <option value='price-asc'>Price Low</option>
+                        <option value='price-desc'>Price High</option>"
+                    ), class: 'form-control' %>
+                    <%= submit_tag "Sort", class: 'btn btn-secondary btn-sm' %>
+                </div>
+            <% end %>
         </div>
         <h1><%= products_index_title %></h1>
 
