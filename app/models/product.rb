@@ -3,9 +3,6 @@ class Product < ApplicationRecord
     belongs_to :seller, class_name: "User", dependent: :destroy
     belongs_to :department
 
-    has_many :product_categories
-    has_many :categories, through: :product_categories
-
     has_many :ratings
     has_many :comments
     has_many :reviews
@@ -21,6 +18,7 @@ class Product < ApplicationRecord
 
     scope :related_to, ->( product ){ where(department_id: product.department_id).limit(10) }
     scope :most_expensive, -> { order(price: :desc).limit(10) }
+    scope :average_rating, -> ( product ){ where(id: product.id).joins(:ratings).average(:value) }
 
     def department_attributes=(attributes)
         if attributes[:name] != ""
