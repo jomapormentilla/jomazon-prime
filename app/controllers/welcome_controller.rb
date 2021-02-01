@@ -19,4 +19,7 @@ class WelcomeController < ApplicationController
                     .or(User.where("company_name LIKE ?", "%#{ params[:q] }%"))
                     .with_attached_profile_image
     end
+
+    def not_found
+    end
 end
