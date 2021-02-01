@@ -4,6 +4,6 @@ class AddProductIdToActionsTable < ActiveRecord::Migration[6.1]
     add_column :actions, :seller_id, :integer
     add_column :actions, :buyer_id, :integer
     remove_column :actions, :user_id, :integer
-    remove_column :actions, :content, :string
+    remove_column :actions, :content, :text
   end
 end
