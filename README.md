@@ -35,6 +35,9 @@ Sign up for an account on the Sign Up page, and you're all set to explore Hogwar
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
+## Heroku App Demo
+Here's a link to this project hosted on Heroku - [Jomazon](https://jomazon.herokuapp.com/)
+
 ## Check out my blog post
 You can read about my experience developing this application on my [blog post](https://jomapormentilla.medium.com/jomazon-prime-ruby-on-rails-c6321a861d0a).
 
